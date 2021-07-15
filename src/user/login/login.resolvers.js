@@ -1,4 +1,5 @@
 import client from "../../client";
+import jwt from "jsonwebtoken"
 
 export default {
   Mutation: {
@@ -24,6 +25,12 @@ export default {
             ok: false,
             error: "비밀번호가 틀립니다."
           }
+        }
+
+        const token = await jwt.sign({ id: user.id }, process.env.SECRET_KEY)
+        return {
+          ok: true,
+          token
         }
       } catch (error) {
         console.log(error);
