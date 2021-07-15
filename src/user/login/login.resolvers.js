@@ -1,5 +1,6 @@
 import client from "../../client";
 import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt"
 
 export default {
   Mutation: {
@@ -20,7 +21,8 @@ export default {
           }
         }
 
-        if (password !== user.password) {
+        const passwordOk = await bcrypt.compare(password, user.password)
+        if (!passwordOk) {
           return {
             ok: false,
             error: "비밀번호가 틀립니다."
