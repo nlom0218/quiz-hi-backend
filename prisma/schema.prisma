@@ -30,6 +30,7 @@ model Question {
   question  String
   answer    String
   type      String
+  creator   String
   image     String?
   quiz      Quiz[]
   tags      Tag[]

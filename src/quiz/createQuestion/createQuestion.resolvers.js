@@ -22,6 +22,7 @@ export default {
             question,
             answer,
             type,
+            creator: loggedInUser.username,
             ...(image && { image: imageURL }),
             ...(tags && {
               tags: {
