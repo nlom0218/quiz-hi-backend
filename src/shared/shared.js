@@ -13,7 +13,7 @@ export const uploadToS3 = async (file, loggedInUser, folderName) => {
   const objectName = `${folderName}/${loggedInUser.id}-${Date.now()}-${filename}`
   const { Location } = await new AWS.S3()
     .upload({
-      Bucket: "khd-nomadcoffee-uploads",
+      Bucket: "quizhi-uploads",
       Key: objectName,
       ACL: "public-read",
       Body: readStream
