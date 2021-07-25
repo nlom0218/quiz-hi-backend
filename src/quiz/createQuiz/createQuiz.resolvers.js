@@ -1,11 +1,15 @@
 import client from "../../client";
 import { protectedResolver } from "../../user/users.utils";
+import { processTags } from "../quiz.utils";
 
 export default {
   Mutation: {
-    createQuiz: protectedResolver(async (_, { questions, title }, { loggedInUser }) => {
+    createQuiz: protectedResolver(async (_, { questions, title, tags }, { loggedInUser }) => {
       const questionsIdArr = questions.split(",").map((item) => parseInt(item))
-      console.log(questionsIdArr);
+      let tagsArr = []
+      if (tags) {
+        tagsArr = processTags(tags)
+      }
       await client.quiz.create({
         data: {
           title,
@@ -16,7 +20,12 @@ export default {
             connect: questionsIdArr.map((item) => {
               return { id: item }
             })
-          }
+          },
+          ...(tags && {
+            tags: {
+              connectOrCreate: tagsArr
+            }
+          })
         }
       })
       return {

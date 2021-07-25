@@ -42,6 +42,7 @@ model Quiz {
   user      User       @relation(fields: [userId], references: [id])
   userId    Int
   questions Question[]
+  tags      Tag[]
   title     String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
@@ -49,8 +50,9 @@ model Quiz {
 
 model Tag {
   id        Int        @id @default(autoincrement())
-  name      String
+  name      String     @unique
   questions Question[]
+  quiz      Quiz[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 }
