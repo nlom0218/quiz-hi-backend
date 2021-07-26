@@ -3,17 +3,17 @@ import { protectedResolver } from "../../user/users.utils";
 
 export default {
   Mutation: {
-    deleteQuiz: protectedResolver(async (_, { id }, { loggedInUser }) => {
-      const quiz = await client.quiz.findUnique({
+    deleteQuestion: protectedResolver(async (_, { id }, { loggedInUser }) => {
+      const question = await client.question.findUnique({
         where: { id }
       })
-      if (quiz.userId !== loggedInUser.id) {
+      if (question.userId !== loggedInUser.id) {
         return {
           ok: false,
           error: "삭제 권한이 없습니다."
         }
       } else {
-        await client.quiz.delete({
+        await client.question.delete({
           where: { id }
         })
         return {
