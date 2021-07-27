@@ -6,7 +6,8 @@ export default gql`
     createQuestion(
       question: String!,
       answer: String!,
-      type: String!, 
+      type: String!,
+      hint: String,
       image: Upload,
       tags: String,
       distractor: String
