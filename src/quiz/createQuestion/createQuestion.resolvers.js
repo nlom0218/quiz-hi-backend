@@ -8,7 +8,7 @@ export default {
   Upload: GraphQLUpload,
   Mutation: {
     createQuestion: protectedResolver(
-      async (_, { question, answer, type, image, tags }, { loggedInUser }) => {
+      async (_, { question, answer, type, image, tags, distractor }, { loggedInUser }) => {
         let imageURL = ""
         if (image) {
           imageURL = await uploadToS3(image, loggedInUser, "question")
@@ -23,6 +23,7 @@ export default {
             answer,
             type,
             creator: loggedInUser.username,
+            ...(distractor && { distractor }),
             ...(image && { image: imageURL }),
             ...(tags && {
               tags: {

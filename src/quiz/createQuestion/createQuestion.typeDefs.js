@@ -8,7 +8,8 @@ export default gql`
       answer: String!,
       type: String!, 
       image: Upload,
-      tags: String
+      tags: String,
+      distractor: String
     ): mutationResult!
   }
 `
