@@ -5,6 +5,7 @@ export default gql`
     id: Int!
     user: User!
     title: String!
+    state: String!
     questions: [Question]
     createdAt: String!
     updatedAt: String!
@@ -16,6 +17,7 @@ export default gql`
     answer: String!
     type: String!
     image: String
+    state: String!
     quiz: [Quiz]
     tags: [Tag]
     createdAt: String!

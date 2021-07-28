@@ -7,6 +7,7 @@ export default gql`
       question: String!,
       answer: String!,
       type: String!,
+      state: String!
       hint: String,
       image: Upload,
       tags: String,
