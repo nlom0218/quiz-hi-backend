@@ -17,7 +17,7 @@ export default {
         if (tags) {
           tagsArr = processTags(tags)
         }
-        await client.question.create({
+        const newQuestion = await client.question.create({
           data: {
             question,
             answer,
@@ -37,7 +37,8 @@ export default {
           }
         })
         return {
-          ok: true
+          ok: true,
+          questionId: newQuestion.id
         }
       }
     )
