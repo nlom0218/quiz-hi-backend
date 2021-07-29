@@ -9,5 +9,8 @@ export default gql`
     type: String!
     createdAt: String!
     updatedAt: String!
+
+    score: Int!
+    isMe: Boolean!
   }
 `
