@@ -10,11 +10,14 @@ export default gql`
     type: String!
     createdAt: String!
     updatedAt: String!
+    caption: String
 
     score: Int!
     isMe: Boolean!
     isFollow: Boolean!
     totalFollow: Int!
     totalFollowing: Int!
+    totalPublicQuiz: Int!
+    totalPublicQuestion: Int!
   }
 `

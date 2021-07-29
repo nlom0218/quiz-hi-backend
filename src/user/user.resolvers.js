@@ -26,7 +26,23 @@ export default {
       }
     },
     totalFollow: ({ id }) => client.user.count({ where: { following: { some: { id } } } }),
-    totalFollowing: ({ id }) => client.user.count({ where: { followers: { some: { id } } } })
+    totalFollowing: ({ id }) => client.user.count({ where: { followers: { some: { id } } } }),
+    totalPublicQuiz: ({ id }) => client.quiz.count({
+      where: {
+        AND: [
+          { userId: id },
+          { state: "public" }
+        ]
+      }
+    }),
+    totalPublicQuestion: ({ id }) => client.question.count({
+      where: {
+        AND: [
+          { userId: id },
+          { state: "public" }
+        ]
+      }
+    })
   }
 }
 
