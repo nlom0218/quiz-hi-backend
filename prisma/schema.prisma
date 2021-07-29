@@ -22,6 +22,8 @@ model User {
   updatedAt DateTime   @updatedAt
   Question  Question[]
   Quiz      Quiz[]
+  followers User[]     @relation("FollowRelation", references: [id])
+  following User[]     @relation("FollowRelation", references: [id])
 }
 
 model Question {

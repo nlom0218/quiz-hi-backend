@@ -13,5 +13,8 @@ export default gql`
 
     score: Int!
     isMe: Boolean!
+    isFollow: Boolean!
+    totalFollow: Int!
+    totalFollowing: Int!
   }
 `
