@@ -50,10 +50,12 @@ export default {
           }
         }
         const uglyPassword = await bcrypt.hash(password, 10)
+        const nickname = "user" + Date.now()
         await client.user.create({
           data: {
             username,
             type,
+            nickname,
             password: uglyPassword,
             ...(email && { email })
           }
