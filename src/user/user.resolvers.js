@@ -8,7 +8,7 @@ export default {
       }
       return id === loggedInUser.id
     },
-    score: () => 0,
+    score: () => 20000,
     isFollow: async ({ id }, _, { loggedInUser }) => {
       if (!loggedInUser) {
         return false

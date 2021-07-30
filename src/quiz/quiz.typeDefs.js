@@ -9,7 +9,11 @@ export default gql`
     questions: [Question]
     createdAt: String!
     updatedAt: String!
+    hits: Int!
+
+    questionNum: Int!
   }
+
   type Question {
     id: Int!
     user: User!
@@ -22,6 +26,7 @@ export default gql`
     tags: [Tag]
     createdAt: String!
     updatedAt: String!
+    hits: Int!
   }
   type Tag {
     id: Int!

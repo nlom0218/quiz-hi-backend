@@ -39,6 +39,7 @@ model Question {
   creator    String
   image      String?
   state      String
+  hits       Int      @default(0)
   quiz       Quiz[]
   tags       Tag[]
   createdAt  DateTime @default(now())
@@ -51,6 +52,7 @@ model Quiz {
   userId    Int
   title     String
   state     String
+  hits      Int        @default(0)
   questions Question[]
   tags      Tag[]
   createdAt DateTime   @default(now())

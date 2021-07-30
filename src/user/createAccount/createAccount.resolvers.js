@@ -50,7 +50,7 @@ export default {
           }
         }
         const uglyPassword = await bcrypt.hash(password, 10)
-        const nickname = "user" + Date.now()
+        const nickname = "user" + Math.floor(Date.now() / 1000)
         await client.user.create({
           data: {
             username,

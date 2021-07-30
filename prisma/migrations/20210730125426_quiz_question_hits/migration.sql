@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Question" ADD COLUMN     "hits" INTEGER NOT NULL DEFAULT 0;
+
+-- AlterTable
+ALTER TABLE "Quiz" ADD COLUMN     "hits" INTEGER NOT NULL DEFAULT 0;
