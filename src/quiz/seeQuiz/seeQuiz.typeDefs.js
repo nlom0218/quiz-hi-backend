@@ -2,6 +2,6 @@ import { gql } from "apollo-server-core";
 
 export default gql`
   type Query {
-    seeQuiz(seeType: String!, page: Int!): [Quiz]
+    seeQuiz(seeType: String!, page: Int!, search: String, sort: String): [Quiz]
   }
 `
