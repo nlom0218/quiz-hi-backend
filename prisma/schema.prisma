@@ -25,6 +25,7 @@ model User {
   Quiz      Quiz[]
   followers User[]     @relation("FollowRelation", references: [id])
   following User[]     @relation("FollowRelation", references: [id])
+  quizLike  QuizLike[]
 }
 
 model Question {
@@ -57,6 +58,8 @@ model Quiz {
   tags      Tag[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  quizLike  QuizLike[]
+  likes     Int        @default(0)
 }
 
 model Tag {
@@ -66,4 +69,16 @@ model Tag {
   quiz      Quiz[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+}
+
+model QuizLike {
+  id        Int      @id @default(autoincrement())
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  quizId    Int
+  userId    Int
+
+  @@unique([quizId, userId])
 }

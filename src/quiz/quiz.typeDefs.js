@@ -10,6 +10,8 @@ export default gql`
     createdAt: String!
     updatedAt: String!
     hits: Int!
+    quizLike: [QuizLike]
+    likes: Int!
 
     questionNum: Int!
   }
