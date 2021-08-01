@@ -1,15 +1,17 @@
 import client from "../../client"
 
-
 export default {
   Query: {
     seeQuiz: async (_, { seeType, page, search, sort }, { loggedInUser }) => {
       if (seeType === "all") {
         return client.quiz.findMany({
-          where: { state: "public" },
+          where: {
+            state: "public",
+            ...(search && { title: { contains: search } })
+          },
           include: {
             user: true,
-            quizLike: true
+            tags: true
           },
           take: 10,
           skip: page * 10 - 10,

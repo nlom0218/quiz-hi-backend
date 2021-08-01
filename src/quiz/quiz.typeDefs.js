@@ -7,6 +7,7 @@ export default gql`
     title: String!
     state: String!
     questions: [Question]
+    tags: [Tag]
     createdAt: String!
     updatedAt: String!
     hits: Int!
@@ -14,6 +15,7 @@ export default gql`
     likes: Int!
 
     questionNum: Int!
+    isLiked: Boolean!
   }
 
   type Question {

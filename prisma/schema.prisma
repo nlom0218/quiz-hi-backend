@@ -11,40 +11,43 @@ generator client {
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
-  username  String     @unique
-  nickname  String?    @unique
-  email     String?
-  password  String
-  avatarURL String?
-  type      String
-  caption   String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  Question  Question[]
-  Quiz      Quiz[]
-  followers User[]     @relation("FollowRelation", references: [id])
-  following User[]     @relation("FollowRelation", references: [id])
-  quizLike  QuizLike[]
+  id           Int            @id @default(autoincrement())
+  username     String         @unique
+  nickname     String?        @unique
+  email        String?
+  password     String
+  avatarURL    String?
+  type         String
+  caption      String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Question     Question[]
+  Quiz         Quiz[]
+  followers    User[]         @relation("FollowRelation", references: [id])
+  following    User[]         @relation("FollowRelation", references: [id])
+  quizLike     QuizLike[]
+  questionLike QuestionLike[]
 }
 
 model Question {
-  id         Int      @id @default(autoincrement())
-  user       User     @relation(fields: [userId], references: [id])
-  userId     Int
-  question   String
-  answer     String
-  type       String
-  hint       String?
-  distractor String?
-  creator    String
-  image      String?
-  state      String
-  hits       Int      @default(0)
-  quiz       Quiz[]
-  tags       Tag[]
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id           Int            @id @default(autoincrement())
+  user         User           @relation(fields: [userId], references: [id])
+  userId       Int
+  question     String
+  answer       String
+  type         String
+  hint         String?
+  distractor   String?
+  creator      String
+  image        String?
+  state        String
+  hits         Int            @default(0)
+  quiz         Quiz[]
+  tags         Tag[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  questionLike QuestionLike[]
+  likes        Int            @default(0)
 }
 
 model Quiz {
@@ -81,4 +84,16 @@ model QuizLike {
   userId    Int
 
   @@unique([quizId, userId])
+}
+
+model QuestionLike {
+  id         Int      @id @default(autoincrement())
+  question   Question @relation(fields: [questionId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  questionId Int
+  userId     Int
+
+  @@unique([questionId, userId])
 }
