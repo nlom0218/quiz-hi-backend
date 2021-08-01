@@ -27,6 +27,7 @@ model User {
   following    User[]         @relation("FollowRelation", references: [id])
   quizLike     QuizLike[]
   questionLike QuestionLike[]
+  tags         Tag[]
 }
 
 model Question {
@@ -72,6 +73,7 @@ model Tag {
   quiz      Quiz[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  users     User[]
 }
 
 model QuizLike {

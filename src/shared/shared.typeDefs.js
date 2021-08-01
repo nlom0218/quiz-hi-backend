@@ -8,4 +8,9 @@ export default gql`
     error: String
     info: Int
   }
+  type seeFeedResult {
+    quiz: [Quiz]
+    question: [Question]
+    totalNum: Int!
+  }
 `

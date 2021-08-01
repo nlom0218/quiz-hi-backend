@@ -5,7 +5,8 @@ export default {
   Query: {
     me: protectedResolver((_, __, { loggedInUser }) => {
       return client.user.findUnique({
-        where: { id: loggedInUser.id }
+        where: { id: loggedInUser.id },
+        include: { tags: true }
       })
     })
   }

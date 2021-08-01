@@ -2,9 +2,9 @@ import client from "../../client"
 
 export default {
   Query: {
-    seeQuestion: async (_, { seeType, page, search, sort }, { loggedInUser }) => {
+    seeQuestion: async (_, { seeType, page, search, sort, tags }, { loggedInUser }) => {
       if (seeType === "all") {
-        return client.question.findMany({
+        const question = await client.question.findMany({
           where: {
             state: "public",
             ...(search && { question: { contains: search } })
@@ -21,11 +21,27 @@ export default {
             ...(sort === "likes" && { likes: "desc" })
           }
         })
+        const totalNum = await client.question.count({
+          where: {
+            state: "public",
+            ...(search && { question: { contains: search } })
+          }
+        })
+        return {
+          question,
+          totalNum
+        }
       } else if (seeType === "tags") {
-        return client.question.findMany({
+        const tagsArr = tags.split(",").map((item) => {
+          return {
+            tags: { some: { name: item } }
+          }
+        })
+        const question = await client.question.findMany({
           where: {
             state: "public",
-            ...(search && { question: { contains: search } })
+            ...(search && { question: { contains: search } }),
+            AND: tagsArr
           },
           include: {
             user: true,
@@ -39,6 +55,17 @@ export default {
             ...(sort === "likes" && { likes: "desc" })
           }
         })
+        const totalNum = await client.question.count({
+          where: {
+            state: "public",
+            ...(search && { question: { contains: search } }),
+            AND: tagsArr
+          },
+        })
+        return {
+          question,
+          totalNum
+        }
       }
     }
   }
