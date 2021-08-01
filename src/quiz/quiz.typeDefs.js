@@ -31,6 +31,10 @@ export default gql`
     createdAt: String!
     updatedAt: String!
     hits: Int!
+    questionLike: [QuestionLike]
+    likes: Int!
+
+    isLiked: Boolean!
   }
   type Tag {
     id: Int!
