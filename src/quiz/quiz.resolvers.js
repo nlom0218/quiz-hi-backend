@@ -23,5 +23,25 @@ export default {
         return false
       }
     }
+  },
+  Question: {
+    isLiked: async ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false
+      }
+      const like = await client.questionLike.findUnique({
+        where: {
+          questionId_userId: {
+            questionId: id,
+            userId: loggedInUser.id
+          }
+        }
+      })
+      if (like) {
+        return true
+      } else {
+        return false
+      }
+    }
   }
 }

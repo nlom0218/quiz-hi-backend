@@ -7,7 +7,7 @@ export default {
         return client.question.findMany({
           where: {
             state: "public",
-            ...(search && { title: { contains: search } })
+            ...(search && { question: { contains: search } })
           },
           include: {
             user: true,
