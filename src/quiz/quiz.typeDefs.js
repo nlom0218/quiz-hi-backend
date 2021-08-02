@@ -39,12 +39,4 @@ export default gql`
 
     isLiked: Boolean!
   }
-  type Tag {
-    id: Int!
-    name: String!
-    questions: [Question]
-    quiz: [Quiz]
-    createdAt: String!
-    updatedAt: String!
-  }
 `

@@ -1,0 +1,45 @@
+import client from "../client"
+
+export default {
+  Tag: {
+    totalFollowUser: async ({ id }) => await client.user.count({
+      where: {
+        tags: {
+          some: { id }
+        }
+      }
+    }),
+    totalQuestions: async ({ id }) => await client.question.count({
+      where: {
+        tags: {
+          some: { id }
+        }
+      }
+    }),
+    totalQuiz: async ({ id }) => await client.quiz.count({
+      where: {
+        tags: {
+          some: { id }
+        }
+      }
+    }),
+    isFollow: async ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false
+      }
+      const exist = await client.user.findFirst({
+        where: {
+          id: loggedInUser.id,
+          tags: {
+            some: { id }
+          }
+        }
+      })
+      if (exist) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+}
