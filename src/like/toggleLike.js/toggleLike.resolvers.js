@@ -42,6 +42,43 @@ export default {
           return {
             ok: true
           }
+        } else if (type === "question") {
+          const question = await client.question.findUnique({ where: { id } })
+          if (!question) {
+            return {
+              ok: false,
+              error: "문제를 찾을 수 없습니다."
+            }
+          }
+          const questionLike = await client.questionLike.findUnique({
+            where: {
+              questionId_userId: {
+                questionId: id,
+                userId: loggedInUser.id
+              }
+            }
+          })
+          if (questionLike) {
+            await client.questionLike.delete({ where: { id: questionLike.id } })
+            await client.question.update({
+              where: { id },
+              data: { likes: question.likes - 1 }
+            })
+          } else {
+            await client.questionLike.create({
+              data: {
+                user: { connect: { id: loggedInUser.id } },
+                question: { connect: { id } }
+              }
+            })
+            await client.question.update({
+              where: { id },
+              data: { likes: question.likes + 1 }
+            })
+          }
+          return {
+            ok: true
+          }
         }
       }
     )
