@@ -4,7 +4,7 @@ import { processTags } from "../quiz.utils";
 
 export default {
   Mutation: {
-    createQuiz: protectedResolver(async (_, { questions, title, tags, state }, { loggedInUser }) => {
+    createQuiz: protectedResolver(async (_, { questions, title, tags, state, caption }, { loggedInUser }) => {
       const questionsIdArr = questions.split(",").map((item) => parseInt(item))
       let tagsArr = []
       if (tags) {
@@ -17,6 +17,7 @@ export default {
           user: {
             connect: { id: loggedInUser.id }
           },
+          ...(caption && { caption }),
           questions: {
             connect: questionsIdArr.map((item) => {
               return { id: item }
