@@ -23,7 +23,9 @@ export default gql`
     id: Int!
     user: User!
     question: String!
+    distractor: String
     answer: String!
+    hint: String
     type: String!
     image: String
     state: String!
