@@ -6,6 +6,7 @@ export default gql`
     user: User!
     title: String!
     state: String!
+    caption: String
     questions: [Question]
     tags: [Tag]
     createdAt: String!
@@ -40,6 +41,7 @@ export default gql`
     id: Int!
     name: String!
     questions: [Question]
+    quiz: [Quiz]
     createdAt: String!
     updatedAt: String!
   }

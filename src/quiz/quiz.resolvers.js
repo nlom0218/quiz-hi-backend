@@ -42,6 +42,18 @@ export default {
       } else {
         return false
       }
+    },
+    user: async ({ userId }) => {
+      return await client.user.findUnique({ where: { id: userId } })
+    },
+    tags: async ({ id }) => {
+      return await client.tag.findMany({
+        where: {
+          questions: {
+            some: { id }
+          }
+        }
+      })
     }
   }
 }
