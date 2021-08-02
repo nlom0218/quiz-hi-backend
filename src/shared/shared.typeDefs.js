@@ -7,6 +7,7 @@ export default gql`
     questionId: Int
     error: String
     info: Int
+    msg: String
   }
   type seeFeedResult {
     quiz: [Quiz]

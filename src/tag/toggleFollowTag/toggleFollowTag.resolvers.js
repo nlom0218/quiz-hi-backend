@@ -27,6 +27,10 @@ export default {
               }
             }
           })
+          return {
+            ok: true,
+            msg: "unfollow"
+          }
         } else {
           await client.user.update({
             where: { id: loggedInUser.id },
@@ -36,9 +40,10 @@ export default {
               }
             }
           })
-        }
-        return {
-          ok: true
+          return {
+            ok: true,
+            msg: "follow"
+          }
         }
       }
     )
