@@ -20,5 +20,6 @@ export default gql`
     totalFollowing: Int!
     totalPublicQuiz: Int!
     totalPublicQuestion: Int!
+    totalFollowTags: Int!
   }
 `

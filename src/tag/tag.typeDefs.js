@@ -10,9 +10,9 @@ export default gql`
     updatedAt: String!
     user: [User]
 
-    totalFollowUser: Int!
+    totalFollowUsers: Int!
     totalQuestions: Int!
-    totalQuiz: Int!
+    totalQuizs: Int!
     isFollow: Boolean!
   }
 `

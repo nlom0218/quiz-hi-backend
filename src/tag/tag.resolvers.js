@@ -2,7 +2,7 @@ import client from "../client"
 
 export default {
   Tag: {
-    totalFollowUser: async ({ id }) => await client.user.count({
+    totalFollowUsers: async ({ id }) => await client.user.count({
       where: {
         tags: {
           some: { id }
@@ -16,7 +16,7 @@ export default {
         }
       }
     }),
-    totalQuiz: async ({ id }) => await client.quiz.count({
+    totalQuizs: async ({ id }) => await client.quiz.count({
       where: {
         tags: {
           some: { id }

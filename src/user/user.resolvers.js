@@ -42,6 +42,13 @@ export default {
           { state: "public" }
         ]
       }
+    }),
+    totalFollowTags: async ({ id }) => await client.tag.count({
+      where: {
+        users: {
+          some: { id }
+        }
+      }
     })
   }
 }
