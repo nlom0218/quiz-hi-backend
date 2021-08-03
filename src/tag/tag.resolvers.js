@@ -16,7 +16,7 @@ export default {
         }
       }
     }),
-    totalQuizs: async ({ id }) => await client.quiz.count({
+    totalQuizzes: async ({ id }) => await client.quiz.count({
       where: {
         tags: {
           some: { id }

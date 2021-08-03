@@ -12,7 +12,7 @@ export default gql`
 
     totalFollowUsers: Int!
     totalQuestions: Int!
-    totalQuizs: Int!
+    totalQuizzes: Int!
     isFollow: Boolean!
   }
 `
