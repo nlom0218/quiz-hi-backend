@@ -22,6 +22,8 @@ export default gql`
     totalFollowing: Int!
     totalPublicQuiz: Int!
     totalPublicQuestion: Int!
+    totalPrivateQuiz: Int!
+    totalPrivateQuestion: Int!
     totalFollowTags: Int!
   }
 `

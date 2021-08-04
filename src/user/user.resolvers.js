@@ -49,7 +49,23 @@ export default {
           some: { id }
         }
       }
-    })
+    }),
+    totalPrivateQuiz: ({ id }) => client.quiz.count({
+      where: {
+        AND: [
+          { userId: id },
+          { state: "private" }
+        ]
+      }
+    }),
+    totalPrivateQuestion: ({ id }) => client.question.count({
+      where: {
+        AND: [
+          { userId: id },
+          { state: "private" }
+        ]
+      }
+    }),
   }
 }
 
