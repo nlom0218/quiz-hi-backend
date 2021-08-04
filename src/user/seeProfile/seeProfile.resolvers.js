@@ -5,7 +5,9 @@ export default {
     seeProfile: (_, { username }) => client.user.findUnique({
       where: { username },
       include: {
-        tags: true
+        tags: true,
+        quiz: true,
+        question: true
       }
     })
   }

@@ -8,7 +8,7 @@ export default {
           userId
         },
         include: { tags: true },
-        take: 5,
+        take: 3,
         orderBy: { likes: "desc" }
       })
     }

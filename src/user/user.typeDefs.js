@@ -12,6 +12,8 @@ export default gql`
     updatedAt: String!
     caption: String
     tags: [Tag]
+    quiz: [Quiz]
+    question: [Question]
 
     score: Int!
     isMe: Boolean!

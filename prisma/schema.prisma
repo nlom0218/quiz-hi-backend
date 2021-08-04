@@ -21,8 +21,8 @@ model User {
   caption      String?
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
-  Question     Question[]
-  Quiz         Quiz[]
+  question     Question[]
+  quiz         Quiz[]
   followers    User[]         @relation("FollowRelation", references: [id])
   following    User[]         @relation("FollowRelation", references: [id])
   quizLike     QuizLike[]
