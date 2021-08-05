@@ -57,7 +57,7 @@ model Quiz {
   userId     Int
   title      String
   state      String
-  caption    String?
+  caption    String
   updateInfo String?
   hits       Int        @default(0)
   questions  Question[]
