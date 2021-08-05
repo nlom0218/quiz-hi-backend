@@ -5,7 +5,11 @@ export default {
     detailQuiz: async (_, { id }) => {
       return await client.quiz.findUnique({
         where: { id },
-        include: { user: true, tags: true, questions: true }
+        include: {
+          user: true,
+          tags: true,
+          questions: true
+        },
       })
     }
   }

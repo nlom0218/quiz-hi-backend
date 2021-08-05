@@ -17,7 +17,10 @@ export default {
         orderBy: { createdAt: "desc" }
       })
     },
-    seeUserPrivateQuiz: async (_, { userId, page }) => {
+    seeUserPrivateQuiz: async (_, { userId, page }, { loggedInUser }) => {
+      if (userId !== loggedInUser.id) {
+        return
+      }
       return await client.quiz.findMany({
         where: {
           userId,

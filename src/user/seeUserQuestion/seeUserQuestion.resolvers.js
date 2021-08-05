@@ -17,7 +17,10 @@ export default {
         orderBy: { createdAt: "desc" }
       })
     },
-    seeUserPrivateQuestion: async (_, { userId, page }) => {
+    seeUserPrivateQuestion: async (_, { userId, page }, { loggedInUser }) => {
+      if (userId !== loggedInUser.id) {
+        return
+      }
       return await client.question.findMany({
         where: {
           userId,
