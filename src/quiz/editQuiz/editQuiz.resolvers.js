@@ -27,9 +27,9 @@ export default {
       await client.quiz.update({
         where: { id },
         data: {
-          ...(title && { title }),
-          ...(caption && { caption }),
-          ...(updateInfo && { updateInfo }),
+          title,
+          caption,
+          updateInfo,
           ...(tags === "" ? {
             tags: {
               disconnect: existTagsArr.map((item) => {
