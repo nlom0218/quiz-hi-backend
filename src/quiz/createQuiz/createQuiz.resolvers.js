@@ -25,7 +25,7 @@ export default {
           },
           ...(tags && {
             tags: {
-              connectOrCreate: tagsArr
+              connectOrCreate: tagsArr,
             }
           })
         }
