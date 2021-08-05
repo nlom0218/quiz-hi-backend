@@ -39,7 +39,6 @@ model Question {
   type         String
   hint         String?
   distractor   String?
-  creator      String
   image        String?
   state        String
   updateInfo   String?

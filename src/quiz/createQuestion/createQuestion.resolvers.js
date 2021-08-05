@@ -23,7 +23,6 @@ export default {
             answer,
             type,
             state,
-            creator: loggedInUser.username,
             ...(distractor && { distractor }),
             ...(image && { image: imageURL }),
             ...(hint && { hint }),
