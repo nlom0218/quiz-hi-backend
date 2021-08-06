@@ -1,10 +1,11 @@
-import AWS from "aws-sdk"
+import AWS, { S3 } from "aws-sdk"
 
 AWS.config.update({
   credentials: {
     accessKeyId: process.env.AWS_KEY,
-    secretAccessKey: process.env.AWS_SECRET
-  }
+    secretAccessKey: process.env.AWS_SECRET,
+  },
+  region: "ap-northeast-2"
 })
 
 export const uploadToS3 = async (file, loggedInUser, folderName) => {
@@ -20,4 +21,23 @@ export const uploadToS3 = async (file, loggedInUser, folderName) => {
     })
     .promise()
   return Location
+}
+
+export const deleteToS3 = async (existImage, folderName) => {
+  const url = existImage.split('/')
+  const delImageName = url[url.length - 1]
+  const params = {
+    Bucket: `quizhi-uploads/${folderName}`,
+    Key: delImageName
+  }
+  await new AWS.S3()
+    .deleteObject(params, (err, data) => {
+      if (err) {
+        console.log('aws delete error')
+        console.log(err, err.stack)
+      } else {
+        console.log('aws video delete success' + data)
+      }
+    })
+    .promise()
 }

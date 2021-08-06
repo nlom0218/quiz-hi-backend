@@ -1,10 +1,10 @@
 import client from "../../client";
-import { uploadToS3 } from "../../shared/shared";
+import { deleteToS3, uploadToS3 } from "../../shared/shared";
 import { protectedResolver } from "../../user/users.utils";
 
 export default {
   Mutation: {
-    editQuestion: protectedResolver(async (_, { id, question, answer, hint, distractor, image, tags, updateInfo }, { loggedInUser }) => {
+    editQuestion: protectedResolver(async (_, { id, question, answer, hint, distractor, image, tags, updateInfo, delImg }, { loggedInUser }) => {
       const existQuestion = await client.question.findUnique({ where: { id }, include: { tags: true } })
       if (!existQuestion) {
         return {
@@ -19,25 +19,38 @@ export default {
         }
       }
 
+      let newHint = hint
+      if (hint === "") {
+        newHint = null
+      }
+
       const newTagsArr = tags.split(",")
       const existTagsArr = existQuestion.tags.map((item) => item.name)
       const addTagsArr = newTagsArr.filter((item) => !existTagsArr.includes(item))
       const delTagsArr = existTagsArr.filter((item) => !newTagsArr.includes(item))
 
-      let newImageURL = ""
+      let imageURL = ""
       if (image) {
-        newImageURL = await uploadToS3(image, loggedInUser, "question")
+        if (existQuestion.image) {
+          await deleteToS3(existQuestion.image, "question")
+        }
+        imageURL = await uploadToS3(image, loggedInUser, "question")
+      }
+
+      if (delImg) {
+        await deleteToS3(existQuestion.image, "question")
       }
 
       await client.question.update({
         where: { id },
         data: {
-          ...(question && { question }),
-          ...(answer && { answer }),
-          ...(hint && { hint }),
+          question,
+          answer,
+          hint: newHint,
           ...(distractor && { distractor }),
           ...(updateInfo && { updateInfo }),
-          ...(image && { image: newImageURL }),
+          ...(image && { image: imageURL }),
+          ...(delImg && { image: null }),
           ...(tags === "" ? {
             tags: {
               disconnect: existTagsArr.map((item) => {

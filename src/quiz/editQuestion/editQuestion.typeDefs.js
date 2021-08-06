@@ -4,13 +4,14 @@ export default gql`
   type Mutation {
     editQuestion(
       id: Int!,
-      question: String, 
-      answer: String,
+      question: String!, 
+      answer: String!,
       hint: String,
       distractor: String,
       image: Upload, 
       tags: String!, 
-      updateInfo: String
+      updateInfo: String!,
+      delImg: Boolean!
     ): mutationResult!
   }
 `

@@ -1,6 +1,5 @@
 import client from "../../client";
 import { protectedResolver } from "../../user/users.utils";
-import { processTags } from "../quiz.utils";
 
 export default {
   Mutation: {
