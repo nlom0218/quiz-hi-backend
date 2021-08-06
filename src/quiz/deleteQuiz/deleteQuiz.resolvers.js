@@ -13,6 +13,13 @@ export default {
           error: "삭제 권한이 없습니다."
         }
       } else {
+        await client.quizLike.deleteMany({
+          where: {
+            quiz: {
+              id
+            }
+          }
+        })
         await client.quiz.delete({
           where: { id }
         })

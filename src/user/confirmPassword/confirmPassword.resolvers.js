@@ -1,5 +1,6 @@
 import client from "../../client";
 import { protectedResolver } from "../users.utils";
+import bcrypt from "bcrypt"
 
 export default {
   Mutation: {
