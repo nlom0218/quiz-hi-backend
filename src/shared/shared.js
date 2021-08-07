@@ -36,7 +36,7 @@ export const deleteToS3 = async (existImage, folderName) => {
         console.log('aws delete error')
         console.log(err, err.stack)
       } else {
-        console.log('aws video delete success' + data)
+        console.log('aws delete success' + data)
       }
     })
     .promise()
