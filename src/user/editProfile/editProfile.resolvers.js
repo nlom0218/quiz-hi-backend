@@ -4,8 +4,8 @@ import { protectedResolver } from "../users.utils";
 
 export default {
   Mutation: {
-    editProfile: protectedResolver(async (_, { id, nickname, caption, avatarURL, delImg }, { loggedInUser }) => {
-      const user = await client.user.findUnique({ where: { id } })
+    editProfile: protectedResolver(async (_, { username, nickname, caption, avatarURL, delImg }, { loggedInUser }) => {
+      const user = await client.user.findUnique({ where: { username } })
       if (user.id !== loggedInUser.id) {
         return {
           ok: false,
@@ -27,7 +27,7 @@ export default {
 
 
       await client.user.update({
-        where: { id },
+        where: { username },
         data: {
           nickname,
           caption,
