@@ -11,23 +11,25 @@ generator client {
 }
 
 model User {
-  id           Int            @id @default(autoincrement())
-  username     String         @unique
-  nickname     String?        @unique
-  email        String?
-  password     String
-  avatarURL    String?
-  type         String
-  caption      String?
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  question     Question[]
-  quiz         Quiz[]
-  followers    User[]         @relation("FollowRelation", references: [id])
-  following    User[]         @relation("FollowRelation", references: [id])
-  quizLike     QuizLike[]
-  questionLike QuestionLike[]
-  tags         Tag[]
+  id             Int            @id @default(autoincrement())
+  username       String         @unique
+  nickname       String?        @unique
+  email          String?
+  password       String
+  avatarURL      String?
+  type           String
+  caption        String?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  question       Question[]
+  quiz           Quiz[]
+  followers      User[]         @relation("FollowRelation", references: [id])
+  following      User[]         @relation("FollowRelation", references: [id])
+  quizLike       QuizLike[]
+  questionLike   QuestionLike[]
+  tags           Tag[]
+  followQuiz     Quiz[]         @relation("QuizFollowRelation")
+  followQuestion Question[]     @relation("QuestionFollowRelation")
 }
 
 model Question {
@@ -49,6 +51,7 @@ model Question {
   updatedAt    DateTime       @updatedAt
   questionLike QuestionLike[]
   likes        Int            @default(0)
+  followUser   User[]         @relation("QuestionFollowRelation")
 }
 
 model Quiz {
@@ -66,6 +69,7 @@ model Quiz {
   updatedAt  DateTime   @updatedAt
   quizLike   QuizLike[]
   likes      Int        @default(0)
+  followUser User[]     @relation("QuizFollowRelation")
 }
 
 model Tag {
