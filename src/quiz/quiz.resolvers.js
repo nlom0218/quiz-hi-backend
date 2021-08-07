@@ -22,6 +22,15 @@ export default {
       } else {
         return false
       }
+    },
+    questions: async ({ id }) => {
+      return await client.question.findMany({
+        where: {
+          quiz: { some: { id } }
+        },
+        include: { user: true, tags: true },
+        orderBy: { createdAt: "asc" }
+      })
     }
   },
   Question: {

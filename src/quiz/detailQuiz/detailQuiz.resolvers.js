@@ -7,8 +7,7 @@ export default {
         where: { id },
         include: {
           user: true,
-          tags: true,
-          questions: true
+          tags: true
         },
       })
     }
