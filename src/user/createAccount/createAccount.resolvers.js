@@ -15,7 +15,6 @@ export default {
           }
         }
 
-        // 비밀번호 유효성 검사 => 프론트엔드에서???
         const num = password.search(/[0-9]/g)
         const spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi)
         if (password.length < 7 || password.length > 17) {
