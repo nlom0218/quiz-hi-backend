@@ -8,6 +8,7 @@ export default gql`
     email: String
     avatarURL: String
     type: String!
+    personalPage: String
     createdAt: String!
     updatedAt: String!
     caption: String
