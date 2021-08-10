@@ -1,4 +1,5 @@
 import client from "../../client";
+import { deleteToS3 } from "../../shared/shared";
 import { protectedResolver } from "../../user/users.utils";
 
 export default {
@@ -13,6 +14,9 @@ export default {
           error: "삭제 권한이 없습니다."
         }
       } else {
+        if (question.image) {
+          await deleteToS3(question.image, "question")
+        }
         await client.questionLike.deleteMany({
           where: {
             question: {

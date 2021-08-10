@@ -11,7 +11,11 @@ export default gql`
       hint: String,
       image: Upload,
       tags: String,
-      distractor: String
+      distractor: String,
+
+      # for updata quiz
+      updata: Boolean
+      quizId: Int
     ): mutationResult!
   }
 `

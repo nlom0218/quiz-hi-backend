@@ -7,6 +7,7 @@ export default gql`
     title: String!
     state: String!
     caption: String
+    updateInfo: String
     questions: [Question]
     tags: [Tag]
     createdAt: String!
@@ -29,6 +30,7 @@ export default gql`
     type: String!
     image: String
     state: String!
+    updateInfo: String
     quiz: [Quiz]
     tags: [Tag]
     createdAt: String!
