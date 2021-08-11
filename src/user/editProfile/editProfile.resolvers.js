@@ -27,10 +27,10 @@ export default {
 
 
       await client.user.update({
-        where: { username },
+        where: { id },
         data: {
           nickname,
-          caption,
+          ...(caption && { caption }),
           ...(avatarURL && { avatarURL: newAvatarURL }),
           ...(delImg && { avatarURL: null })
         }
