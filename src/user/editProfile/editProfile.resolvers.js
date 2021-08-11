@@ -27,7 +27,7 @@ export default {
 
 
       await client.user.update({
-        where: { id },
+        where: { username },
         data: {
           nickname,
           ...(caption && { caption }),
