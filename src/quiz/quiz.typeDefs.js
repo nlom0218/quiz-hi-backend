@@ -15,6 +15,7 @@ export default gql`
     hits: Int!
     quizLike: [QuizLike]
     likes: Int!
+    followUser: [User]
 
     questionNum: Int!
     isLiked: Boolean!
@@ -38,6 +39,7 @@ export default gql`
     hits: Int!
     questionLike: [QuestionLike]
     likes: Int!
+    followUser: [User]
 
     isLiked: Boolean!
   }

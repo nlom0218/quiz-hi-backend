@@ -15,6 +15,8 @@ export default gql`
     tags: [Tag]
     quiz: [Quiz]
     question: [Question]
+    followQuiz: [Quiz]
+    followQuestion: [Question]
 
     score: Int!
     isMe: Boolean!
