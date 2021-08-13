@@ -4,7 +4,7 @@ import { protectedResolver } from "../users.utils";
 export default {
   Query: {
     seeFollowQuiz: protectedResolver(async (_, { id, page }) => {
-      return await client.quiz.findMany({
+      const quiz = await client.quiz.findMany({
         where: {
           followUser: { some: { id } }
         },
@@ -12,6 +12,15 @@ export default {
         skip: page * 10 - 10,
         orderBy: { createdAt: "desc" }
       })
+      const totalNum = await client.quiz.count({
+        where: {
+          followUser: { some: { id } }
+        }
+      })
+      return {
+        quiz,
+        totalNum
+      }
     })
   }
 }
