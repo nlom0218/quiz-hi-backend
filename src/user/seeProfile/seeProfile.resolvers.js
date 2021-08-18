@@ -7,7 +7,9 @@ export default {
       include: {
         tags: true,
         quiz: true,
-        question: true
+        question: true,
+        teacher: true,
+        students: true
       }
     })
   }
