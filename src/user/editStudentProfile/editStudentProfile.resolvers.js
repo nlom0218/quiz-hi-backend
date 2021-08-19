@@ -45,13 +45,6 @@ export default {
             error: "비밀번호는 특수문자 2자 이상을 포함해야 합니다."
           }
         }
-
-        if (password !== passwordConfirm) {
-          return {
-            ok: false,
-            error: "비밀번호가 서로 일치하지 않습니다."
-          }
-        }
         uglyPassword = await bcrypt.hash(password, 10)
       }
 
