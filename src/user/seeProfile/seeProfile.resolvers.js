@@ -9,7 +9,6 @@ export default {
         quiz: true,
         question: true,
         teacher: true,
-        students: true
       }
     })
   }

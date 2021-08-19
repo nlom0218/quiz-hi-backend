@@ -66,6 +66,12 @@ export default {
         ]
       }
     }),
+    students: ({ id }) => client.user.findMany({
+      where: {
+        teacher: { some: { id } }
+      },
+      orderBy: { createdAt: "asc" }
+    })
   }
 }
 
