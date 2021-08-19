@@ -25,7 +25,7 @@ export default {
             username: `${teacher.username}_s${i + 1}`,
             nickname: nicknameArr[i],
             type: "student",
-            password: await bcrypt.hash(`${password}${i}`, 10),
+            password: await bcrypt.hash(`${password}^^${i + 1}`, 10),
             teacher: {
               connect: { id: teacher.id }
             }
