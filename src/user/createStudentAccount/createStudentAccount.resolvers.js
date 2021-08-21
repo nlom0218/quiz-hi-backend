@@ -18,6 +18,17 @@ export default {
           error: "학생 계정 생성 권한이 없습니다."
         }
       }
+
+      const existUsername = await client.user.findUnique({
+        where: { username: `${username}_s1` }
+      })
+      if (existUsername) {
+        return {
+          ok: false,
+          error: `${username}_s(학생번호)의 아이디가 존재합니다.`
+        }
+      }
+
       const nicknameArr = nickname.split(",")
       for (let i = 0; i < nicknameArr.length; i++) {
         await client.user.create({
