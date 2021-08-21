@@ -19,6 +19,15 @@ export default {
         }
       }
 
+      const existTeacherUsername = await client.user.findUnique({
+        where: { username }
+      })
+      if (existTeacherUsername) {
+        return {
+          ok: false,
+          error: `사용할 수 없는 아이디입니다.`
+        }
+      }
       const existUsername = await client.user.findUnique({
         where: { username: `${username}_s1` }
       })
