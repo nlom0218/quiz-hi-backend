@@ -19,22 +19,24 @@ export default {
         }
       }
 
-      const existTeacherUsername = await client.user.findUnique({
-        where: { username }
-      })
-      if (existTeacherUsername) {
-        return {
-          ok: false,
-          error: `사용할 수 없는 아이디입니다.`
+      if (username) {
+        const existTeacherUsername = await client.user.findUnique({
+          where: { username }
+        })
+        if (existTeacherUsername) {
+          return {
+            ok: false,
+            error: `사용할 수 없는 아이디입니다.`
+          }
         }
-      }
-      const existUsername = await client.user.findUnique({
-        where: { username: `${username}_s1` }
-      })
-      if (existUsername) {
-        return {
-          ok: false,
-          error: `${username}_s(학생번호)의 아이디가 존재합니다.`
+        const existUsername = await client.user.findUnique({
+          where: { username: `${username}_s1` }
+        })
+        if (existUsername) {
+          return {
+            ok: false,
+            error: `${username}_s(학생번호)의 아이디가 존재합니다.`
+          }
         }
       }
 
