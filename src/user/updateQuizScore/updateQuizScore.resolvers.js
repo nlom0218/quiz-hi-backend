@@ -3,7 +3,7 @@ import { protectedResolver } from "../users.utils";
 
 export default {
   Mutation: {
-    updateQuizScore: protectedResolver(async (_, { result, teacherId }, { loggedInUser }) => {
+    updateQuizScore: protectedResolver(async (_, { result, teacherId, quizTitle, quizId }, { loggedInUser }) => {
       const teacher = await client.user.findUnique({ where: { id: teacherId } })
       const teacherQuizScoreArr = JSON.parse(teacher.quizScore)
       console.log(teacherQuizScoreArr);
@@ -24,7 +24,7 @@ export default {
           }
         }
         const stduentQuizScoreArr = JSON.parse(student.quizScore)
-        const newQuizScoreArr = [...stduentQuizScoreArr, { quizId: resultArr[i].quizId, score: resultArr[i].score, order: teacherQuizScoreArr.length + 1 }]
+        const newQuizScoreArr = [...stduentQuizScoreArr, { score: resultArr[i].score, order: teacherQuizScoreArr.length + 1 }]
         await client.user.update({
           where: { id: resultArr[i].id },
           data: {
@@ -33,7 +33,7 @@ export default {
         })
       }
 
-      const newTeacherQuizScoreArr = [...teacherQuizScoreArr, { quizId: resultArr[0].quizId, order: teacherQuizScoreArr.length + 1 }]
+      const newTeacherQuizScoreArr = [...teacherQuizScoreArr, { quizId, quizTitle, order: teacherQuizScoreArr.length + 1 }]
       await client.user.update({
         where: { id: teacherId },
         data: {
