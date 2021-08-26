@@ -20,6 +20,7 @@ model User {
   type           String
   caption        String?
   personalPage   String?
+  quizScore      String?        @default("[]")
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
   question       Question[]

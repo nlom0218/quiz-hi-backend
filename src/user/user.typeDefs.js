@@ -12,6 +12,7 @@ export default gql`
     createdAt: String!
     updatedAt: String!
     caption: String
+    quizScore: String
     tags: [Tag]
     quiz: [Quiz]
     question: [Question]
