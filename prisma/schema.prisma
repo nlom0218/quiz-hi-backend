@@ -21,6 +21,7 @@ model User {
   caption        String?
   personalPage   String?
   quizScore      String?        @default("[]")
+  homeSetting    String?        @default("[]")
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
   question       Question[]
