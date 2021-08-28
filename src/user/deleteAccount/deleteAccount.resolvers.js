@@ -43,6 +43,15 @@ export default {
           userId: user.id
         }
       })
+      await client.user.deleteMany({
+        where: {
+          teacher: {
+            some: {
+              id: user.id
+            }
+          }
+        }
+      })
       await client.user.delete({
         where: { username }
       })
