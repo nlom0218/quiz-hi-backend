@@ -5,7 +5,7 @@ import { deleteToS3 } from "../../shared/shared";
 
 export default {
   Mutation: {
-    deleteAccount: protectedResolver(async (_, { username, password }, { loggedInUser }) => {
+    deleteAllStudentAccount: protectedResolver(async (_, { username, password }, { loggedInUser }) => {
       const user = await client.user.findUnique({ where: { username } })
       if (user.id !== loggedInUser.id) {
         return {
@@ -41,6 +41,12 @@ export default {
               id: user.id
             }
           }
+        }
+      })
+      await client.user.update({
+        where: {username},
+        data: {
+          quizScore: []
         }
       })
       return {
