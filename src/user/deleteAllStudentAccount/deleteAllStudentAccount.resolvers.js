@@ -44,9 +44,11 @@ export default {
         }
       })
       await client.user.update({
-        where: {username},
+        where: {
+          username
+        },
         data: {
-          quizScore: []
+          quizScore: JSON.stringify([])
         }
       })
       return {
