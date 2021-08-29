@@ -1,10 +1,9 @@
-import { gql } from "apollo-server-core";
 import client from "../../client";
 import { protectedResolver } from "../users.utils";
 
 export default {
   Mutation: {
-    editHomeSetting: protectedResolver(async (_, { homeSetting, username }, { loggedInUser }) => {
+    editHomeSetting: protectedResolver(async (_, { homeSetting, username, type }, { loggedInUser }) => {
       const user = await client.user.findUnique({ where: { username } })
       if (user.id !== loggedInUser.id) {
         return {
@@ -15,7 +14,8 @@ export default {
       await client.user.update({
         where: { username },
         data: {
-          homeSetting
+          ...(type === "firstPage" && { firstPage: homeSetting }),
+          ...(type === "fontFamily" && { fontFamily: homeSetting })
         }
       })
       return {
