@@ -21,7 +21,7 @@ model User {
   caption          String?
   personalPage     String?
   quizScore        String?        @default("[]")
-  firstPage        String         @default("home")
+  firstPage        String         @default("/")
   fontFamily       String         @default("'Noto Sans KR', sans-serif")
   goldenbellScore  Int            @default(100)
   cooperationScore Int            @default(100)
