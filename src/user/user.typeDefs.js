@@ -13,7 +13,10 @@ export default gql`
     updatedAt: String!
     caption: String
     quizScore: String
-    homeSetting: String
+    firstPage: String!
+    fontFamily: String!
+    goldenbellScore: Int!
+    cooperationScore: Int!
     tags: [Tag]
     quiz: [Quiz]
     question: [Question]

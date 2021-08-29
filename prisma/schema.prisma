@@ -11,30 +11,33 @@ generator client {
 }
 
 model User {
-  id             Int            @id @default(autoincrement())
-  username       String         @unique
-  nickname       String?
-  email          String?
-  password       String
-  avatarURL      String?
-  type           String
-  caption        String?
-  personalPage   String?
-  quizScore      String?        @default("[]")
-  homeSetting    String?        @default("[]")
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  question       Question[]
-  quiz           Quiz[]
-  followers      User[]         @relation("FollowRelation", references: [id])
-  following      User[]         @relation("FollowRelation", references: [id])
-  students       User[]         @relation("TeacherStudentRelation", references: [id])
-  teacher        User[]         @relation("TeacherStudentRelation", references: [id])
-  quizLike       QuizLike[]
-  questionLike   QuestionLike[]
-  tags           Tag[]
-  followQuiz     Quiz[]         @relation("QuizFollowRelation")
-  followQuestion Question[]     @relation("QuestionFollowRelation")
+  id               Int            @id @default(autoincrement())
+  username         String         @unique
+  nickname         String?
+  email            String?
+  password         String
+  avatarURL        String?
+  type             String
+  caption          String?
+  personalPage     String?
+  quizScore        String?        @default("[]")
+  firstPage        String         @default("home")
+  fontFamily       String         @default("'Noto Sans KR', sans-serif")
+  goldenbellScore  Int            @default(100)
+  cooperationScore Int            @default(100)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  question         Question[]
+  quiz             Quiz[]
+  followers        User[]         @relation("FollowRelation", references: [id])
+  following        User[]         @relation("FollowRelation", references: [id])
+  students         User[]         @relation("TeacherStudentRelation", references: [id])
+  teacher          User[]         @relation("TeacherStudentRelation", references: [id])
+  quizLike         QuizLike[]
+  questionLike     QuestionLike[]
+  tags             Tag[]
+  followQuiz       Quiz[]         @relation("QuizFollowRelation")
+  followQuestion   Question[]     @relation("QuestionFollowRelation")
 }
 
 model Question {
