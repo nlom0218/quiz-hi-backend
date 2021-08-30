@@ -3,7 +3,7 @@ import { protectedResolver } from "../users.utils";
 
 export default {
   Mutation: {
-    editHomeSetting: protectedResolver(async (_, { homeSetting, username, type }, { loggedInUser }) => {
+    editHomeSetting: protectedResolver(async (_, { homeSetting, username, type, goldenbellScore, cooperationScore }, { loggedInUser }) => {
       const user = await client.user.findUnique({ where: { username } })
       if (user.id !== loggedInUser.id) {
         return {
@@ -15,7 +15,8 @@ export default {
         where: { username },
         data: {
           ...(type === "firstPage" && { firstPage: homeSetting }),
-          ...(type === "fontFamily" && { fontFamily: homeSetting })
+          ...(type === "fontFamily" && { fontFamily: homeSetting }),
+          ...(type === "score" && { goldenbellScore, cooperationScore })
         }
       })
       return {
