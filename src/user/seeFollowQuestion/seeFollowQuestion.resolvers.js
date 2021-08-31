@@ -4,7 +4,7 @@ import { protectedResolver } from "../users.utils";
 export default {
   Query: {
     seeFollowQuestion: protectedResolver(async (_, { id, page }) => {
-      const quiz = await client.question.findMany({
+      const question = await client.question.findMany({
         where: {
           followUser: { some: { id } }
         },
