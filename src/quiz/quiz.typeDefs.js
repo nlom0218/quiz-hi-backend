@@ -7,6 +7,7 @@ export default gql`
     title: String!
     state: String!
     caption: String
+    order: String
     updateInfo: String
     questions: [Question]
     tags: [Tag]

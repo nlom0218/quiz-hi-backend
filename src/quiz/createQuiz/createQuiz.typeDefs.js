@@ -7,7 +7,8 @@ export default gql`
       title: String!, 
       tags: String, 
       state: String!,
-      caption: String
+      caption: String,
+      order: String
     ): mutationResult!
   }
 `

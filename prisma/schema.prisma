@@ -69,6 +69,7 @@ model Quiz {
   title      String
   state      String
   caption    String
+  order      String?
   updateInfo String?
   hits       Int        @default(0)
   questions  Question[]
