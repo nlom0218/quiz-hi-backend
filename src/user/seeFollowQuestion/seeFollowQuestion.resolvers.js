@@ -10,7 +10,7 @@ export default {
         },
         take: 10,
         skip: page * 10 - 10,
-        orderBy: { createdAt: "desc" },
+        // orderBy: { createdAt: "desc" },
         include: { user: true, tags: true }
       })
       const totalNum = await client.question.count({
