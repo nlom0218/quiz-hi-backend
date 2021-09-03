@@ -118,13 +118,15 @@ model QuestionLike {
 }
 
 model Homework {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User[]
-  quiz      Quiz     @relation(fields: [quizId], references: [id])
-  quizId    Int
-  score     String
-  order     Int
-  mode      String
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User[]
+  quiz        Quiz     @relation(fields: [quizId], references: [id])
+  quizId      Int
+  targetScore Int?
+  score       String
+  order       Int
+  mode        String
+  teacherId   Int
 }

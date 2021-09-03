@@ -3,7 +3,7 @@ import { protectedResolver } from "../../user/users.utils";
 
 export default {
   Mutation: {
-    createHomework: protectedResolver(async (_, { quizId, studentId, score }, { loggedInUser }) => {
+    createHomework: protectedResolver(async (_, { quizId, studentId, score, mode, targetScore }, { loggedInUser }) => {
       const teacher = await client.user.findUnique({ where: { id: loggedInUser.id } })
       const quiz = await client.quiz.findUnique({ where: { id: quizId } })
       const teacherQuizScoreArr = JSON.parse(teacher.quizScore)
@@ -21,11 +21,14 @@ export default {
           quiz: {
             connect: { id: quizId }
           },
-          score,
+          score: JSON.stringify(score.split(",")),
           user: {
             connect: studentIdArr
           },
-          order: teacherQuizScoreArr.length + 1
+          order: teacherQuizScoreArr.length + 1,
+          mode,
+          ...(targetScore && { targetScore }),
+          teacherId: teacher.id
         }
       })
       return {
