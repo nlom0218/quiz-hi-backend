@@ -126,4 +126,5 @@ model Homework {
   quizId    Int
   score     String
   order     Int
+  mode      String
 }
