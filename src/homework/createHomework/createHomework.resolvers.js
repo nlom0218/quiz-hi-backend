@@ -28,7 +28,8 @@ export default {
           order: teacherQuizScoreArr.length + 1,
           mode,
           ...(targetScore && { targetScore }),
-          teacherId: teacher.id
+          teacherId: teacher.id,
+          title: quiz.title
         }
       })
       return {
