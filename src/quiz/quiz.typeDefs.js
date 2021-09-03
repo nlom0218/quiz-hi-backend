@@ -17,6 +17,7 @@ export default gql`
     quizLike: [QuizLike]
     likes: Int!
     followUser: [User]
+    homework: [Homework]
 
     questionNum: Int!
     isLiked: Boolean!

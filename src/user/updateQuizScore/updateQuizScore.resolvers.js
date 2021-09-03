@@ -6,7 +6,6 @@ export default {
     updateQuizScore: protectedResolver(async (_, { result, teacherId, quizTitle, quizId }, { loggedInUser }) => {
       const teacher = await client.user.findUnique({ where: { id: teacherId } })
       const teacherQuizScoreArr = JSON.parse(teacher.quizScore)
-      console.log(teacherQuizScoreArr);
       if (teacher.id !== loggedInUser.id) {
         return {
           ok: false,

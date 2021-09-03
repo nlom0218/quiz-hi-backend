@@ -24,6 +24,7 @@ export default gql`
     followQuestion: [Question]
     students: [User]
     teacher: [User]
+    homework: [Homework]
 
     score: Int!
     isMe: Boolean!

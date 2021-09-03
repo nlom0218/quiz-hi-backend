@@ -125,4 +125,5 @@ model Homework {
   quiz      Quiz     @relation(fields: [quizId], references: [id])
   quizId    Int
   score     String
+  order     Int
 }
