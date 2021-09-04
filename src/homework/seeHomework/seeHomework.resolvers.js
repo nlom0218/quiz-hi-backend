@@ -8,7 +8,8 @@ export default {
       if (type === "teacher") {
         homework = await client.homework.findMany({
           where: { teacherId: userId },
-          include: { user: true }
+          include: { user: true },
+          orderBy: { createdAt: "asc" }
         })
       } else if (type === "student") {
         homework = await client.homework.findMany({
@@ -18,7 +19,8 @@ export default {
                 id: userId
               }
             }
-          }
+          },
+          orderBy: { createdAt: "asc" }
         })
       }
       console.log(homework);

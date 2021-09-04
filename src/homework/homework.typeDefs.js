@@ -13,5 +13,6 @@ export default gql`
     order: Int!
     mode: String!
     teacherId: Int!
+    title: String!
   }
 `
