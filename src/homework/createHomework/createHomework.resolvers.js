@@ -21,7 +21,7 @@ export default {
           quiz: {
             connect: { id: quizId }
           },
-          score: JSON.stringify(score.split(",")),
+          score,
           user: {
             connect: studentIdArr
           },
