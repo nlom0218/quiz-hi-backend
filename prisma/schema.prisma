@@ -11,8 +11,8 @@ generator client {
 }
 
 model User {
-  id               Int            @id @default(autoincrement())
-  username         String         @unique
+  id               Int              @id @default(autoincrement())
+  username         String           @unique
   nickname         String?
   email            String?
   password         String
@@ -20,25 +20,26 @@ model User {
   type             String
   caption          String?
   personalPage     String?
-  quizScore        String?        @default("[]")
-  firstPage        String         @default("/")
-  fontFamily       String         @default("'Noto Sans KR', sans-serif")
-  goldenbellScore  Int            @default(100)
-  cooperationScore Int            @default(100)
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
+  quizScore        String?          @default("[]")
+  firstPage        String           @default("/")
+  fontFamily       String           @default("'Noto Sans KR', sans-serif")
+  goldenbellScore  Int              @default(100)
+  cooperationScore Int              @default(100)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
   question         Question[]
   quiz             Quiz[]
-  followers        User[]         @relation("FollowRelation", references: [id])
-  following        User[]         @relation("FollowRelation", references: [id])
-  students         User[]         @relation("TeacherStudentRelation", references: [id])
-  teacher          User[]         @relation("TeacherStudentRelation", references: [id])
+  followers        User[]           @relation("FollowRelation", references: [id])
+  following        User[]           @relation("FollowRelation", references: [id])
+  students         User[]           @relation("TeacherStudentRelation", references: [id])
+  teacher          User[]           @relation("TeacherStudentRelation", references: [id])
   quizLike         QuizLike[]
   questionLike     QuestionLike[]
   tags             Tag[]
-  followQuiz       Quiz[]         @relation("QuizFollowRelation")
-  followQuestion   Question[]     @relation("QuestionFollowRelation")
+  followQuiz       Quiz[]           @relation("QuizFollowRelation")
+  followQuestion   Question[]       @relation("QuestionFollowRelation")
   homework         Homework[]
+  homeworkResult   HomeworkResult[]
 }
 
 model Question {
@@ -64,23 +65,24 @@ model Question {
 }
 
 model Quiz {
-  id         Int        @id @default(autoincrement())
-  user       User       @relation(fields: [userId], references: [id])
-  userId     Int
-  title      String
-  state      String
-  caption    String
-  order      String?
-  updateInfo String?
-  hits       Int        @default(0)
-  questions  Question[]
-  tags       Tag[]
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  quizLike   QuizLike[]
-  likes      Int        @default(0)
-  followUser User[]     @relation("QuizFollowRelation")
-  homework   Homework[]
+  id             Int              @id @default(autoincrement())
+  user           User             @relation(fields: [userId], references: [id])
+  userId         Int
+  title          String
+  state          String
+  caption        String
+  order          String?
+  updateInfo     String?
+  hits           Int              @default(0)
+  questions      Question[]
+  tags           Tag[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  quizLike       QuizLike[]
+  likes          Int              @default(0)
+  followUser     User[]           @relation("QuizFollowRelation")
+  homework       Homework[]
+  homeworkResult HomeworkResult[]
 }
 
 model Tag {
@@ -130,4 +132,16 @@ model Homework {
   order       Int
   mode        String
   teacherId   Int
+}
+
+model HomeworkResult {
+  id        Int      @id @default(autoincrement())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  quizId    Int
+  result    String
 }
