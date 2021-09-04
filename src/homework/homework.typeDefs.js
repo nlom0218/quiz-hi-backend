@@ -15,4 +15,14 @@ export default gql`
     teacherId: Int!
     title: String!
   }
+
+  type HomeworkResut {
+    id: Int!     
+    createdAt: String! 
+    updatedAt: String! 
+    user: User
+    quiz: Quiz
+    title: String!
+    result: String!
+  }
 `
