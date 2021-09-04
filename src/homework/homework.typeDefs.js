@@ -22,7 +22,7 @@ export default gql`
     updatedAt: String! 
     user: User
     quiz: Quiz
-    title: String!
     result: String!
+    score: Int!
   }
 `

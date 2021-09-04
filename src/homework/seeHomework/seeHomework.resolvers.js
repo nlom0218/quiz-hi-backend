@@ -23,7 +23,6 @@ export default {
           orderBy: { createdAt: "asc" }
         })
       }
-      console.log(homework);
       return homework
     })
   }
