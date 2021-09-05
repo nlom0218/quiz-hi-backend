@@ -29,11 +29,23 @@ export default {
           }
         }
       })
-      for(let i = 0; i < student.length; i++) {
-        if(student[i].avatarURL) {
+      for (let i = 0; i < student.length; i++) {
+        if (student[i].avatarURL) {
           await deleteToS3(student[i].avatarURL, "userProfile")
         }
+        await client.homeworkResult.deleteMany({
+          where: {
+            user: {
+              id: student[i].id
+            }
+          }
+        })
       }
+      await client.homework.deleteMany({
+        where: {
+          teacherId: user.id
+        }
+      })
       await client.user.deleteMany({
         where: {
           teacher: {

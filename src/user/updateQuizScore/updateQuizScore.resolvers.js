@@ -23,7 +23,7 @@ export default {
           }
         }
         const stduentQuizScoreArr = JSON.parse(student.quizScore)
-        const newQuizScoreArr = [...stduentQuizScoreArr, { score: resultArr[i].score, order: teacherQuizScoreArr.length + 1 }]
+        const newQuizScoreArr = [...stduentQuizScoreArr, { score: resultArr[i].score, quizTitle, order: teacherQuizScoreArr.length + 1 }]
         await client.user.update({
           where: { id: resultArr[i].id },
           data: {

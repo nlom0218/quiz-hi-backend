@@ -9,7 +9,7 @@ export default {
         homework = await client.homework.findMany({
           where: { teacherId: userId },
           include: { user: true },
-          orderBy: { createdAt: "asc" }
+          orderBy: { createdAt: "desc" }
         })
       } else if (type === "student") {
         homework = await client.homework.findMany({
@@ -20,7 +20,7 @@ export default {
               }
             }
           },
-          orderBy: { createdAt: "asc" }
+          orderBy: { createdAt: "desc" }
         })
       }
       return homework

@@ -8,7 +8,7 @@ export default {
       const student = await client.user.findUnique({ where: { id: loggedInUser.id } })
       const quiz = await client.quiz.findUnique({ where: { id: quizId } })
       const studentQuizScoreArr = JSON.parse(student.quizScore)
-      const newStudentQuizScoreArr = [...studentQuizScoreArr, { score, order }].sort(compare("order"))
+      const newStudentQuizScoreArr = [...studentQuizScoreArr, { score, order, quizTitle: quiz.title }].sort(compare("order"))
       await client.user.update({
         where: { id: loggedInUser.id },
         data: {
