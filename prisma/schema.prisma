@@ -132,6 +132,7 @@ model Homework {
   order       Int
   mode        String
   teacherId   Int
+  finish      Boolean  @default(false)
 }
 
 model HomeworkResult {
