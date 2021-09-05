@@ -14,6 +14,7 @@ export default gql`
     mode: String!
     teacherId: Int!
     title: String!
+    finish: Boolean!
   }
 
   type HomeworkResult {
