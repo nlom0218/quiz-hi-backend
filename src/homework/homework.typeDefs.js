@@ -16,7 +16,7 @@ export default gql`
     title: String!
   }
 
-  type HomeworkResut {
+  type HomeworkResult {
     id: Int!     
     createdAt: String! 
     updatedAt: String! 
