@@ -16,6 +16,14 @@ export default {
         }
       }
 
+      await client.homeworkResult.deleteMany({
+        where: {
+          user: {
+            id: studentId
+          }
+        }
+      })
+
       await client.user.delete({
         where: { id: studentId }
       })
