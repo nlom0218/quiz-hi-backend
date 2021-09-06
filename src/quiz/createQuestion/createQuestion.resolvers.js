@@ -9,8 +9,6 @@ export default {
   Mutation: {
     createQuestion: protectedResolver(
       async (_, { question, answer, type, image, tags, distractor, hint, state, updata, quizId }, { loggedInUser }) => {
-        const quiz = await client.quiz.findUnique({ where: { id: quizId } })
-        const quizOrder = JSON.parse(quiz.order)
         let imageURL = ""
         if (image) {
           imageURL = await uploadToS3(image, loggedInUser, "question")
@@ -39,6 +37,8 @@ export default {
           }
         })
         if (updata) {
+          const quiz = await client.quiz.findUnique({ where: { id: quizId } })
+          const quizOrder = JSON.parse(quiz.order)
           let order = null
           if (quiz.order) {
             order = JSON.stringify([...quizOrder, newQuestion.id])
