@@ -18,9 +18,6 @@ export default {
       const studentIdArr = studentId.split(",").map((item) => { return { id: parseInt(item) } })
       await client.homework.create({
         data: {
-          quiz: {
-            connect: { id: quizId }
-          },
           score,
           user: {
             connect: studentIdArr
@@ -29,7 +26,8 @@ export default {
           mode,
           ...(targetScore && { targetScore }),
           teacherId: teacher.id,
-          title: quiz.title
+          title: quiz.title,
+          quizId
         }
       })
       return {

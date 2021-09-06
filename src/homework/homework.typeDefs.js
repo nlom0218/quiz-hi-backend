@@ -25,5 +25,6 @@ export default gql`
     quiz: Quiz
     result: String!
     score: Int!
+    title: String!
   }
 `

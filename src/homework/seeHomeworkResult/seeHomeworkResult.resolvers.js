@@ -11,7 +11,6 @@ export default {
         },
         include: {
           user: true,
-          quiz: true
         }
       })
     })
