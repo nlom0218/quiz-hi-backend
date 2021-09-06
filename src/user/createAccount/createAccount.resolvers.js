@@ -8,10 +8,13 @@ export default {
         const existingUser = await client.user.findUnique({
           where: { username }
         })
-        if (existingUser) {
+        const existingUser2 = await client.user.findUnique({
+          where: { email }
+        })
+        if (existingUser || existingUser2) {
           return {
             ok: false,
-            error: "아이디가 이미 존재합니다."
+            error: "아이디 또는 이메일이 이미 존재합니다."
           }
         }
 
