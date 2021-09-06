@@ -29,7 +29,7 @@ async function startServer() {
       }
     }
   });
-  await server.start();
+  // await server.start();
 
   const app = express();
   app.use(logger("tiny"))
