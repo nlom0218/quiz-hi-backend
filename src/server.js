@@ -1,3 +1,4 @@
+require("dotenv").config()
 import { ApolloServer } from "apollo-server-express"
 import { typeDefs, resolvers } from "./schema"
 import { getUser } from "./user/users.utils"
@@ -16,6 +17,8 @@ import logger from "morgan"
 //     }
 //   }
 // })
+
+const PORT = process.env.PORT
 
 async function startServer() {
   const server = new ApolloServer({
@@ -37,9 +40,9 @@ async function startServer() {
 
   server.applyMiddleware({ app });
 
-  await new Promise(r => app.listen({ port: 4000 }, r));
+  await new Promise(r => app.listen({ port: PORT }, r));
 
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
 }
 
 startServer();
