@@ -23,7 +23,7 @@ export default {
           result,
           score,
           title: quizTitle,
-          quizId,
+          quizId
         }
       })
       return {
