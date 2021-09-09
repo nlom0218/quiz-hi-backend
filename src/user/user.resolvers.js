@@ -8,7 +8,15 @@ export default {
       }
       return id === loggedInUser.id
     },
-    score: () => 20000,
+    score: async ({ type, quizScore }) => {
+      if (type === "teacher") {
+        return 2000
+      } else if (type === "student") {
+        const scoreArr = JSON.parse(quizScore).map((item) => parseInt(item.score))
+        const totalScore = scoreArr.reduce((acc, cur) => acc + cur, 0)
+        return totalScore
+      }
+    },
     isFollow: async ({ id }, _, { loggedInUser }) => {
       if (!loggedInUser) {
         return false
