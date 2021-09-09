@@ -10,7 +10,7 @@ export default {
     },
     score: async ({ type, quizScore }) => {
       if (type === "teacher") {
-        return 2000
+        return 20000
       } else if (type === "student") {
         const scoreArr = JSON.parse(quizScore).map((item) => parseInt(item.score))
         const totalScore = scoreArr.reduce((acc, cur) => acc + cur, 0)
