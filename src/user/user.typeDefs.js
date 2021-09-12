@@ -26,6 +26,7 @@ export default gql`
     teacher: [User]
     homework: [Homework]
     homeworkResult: [HomeworkResult]
+    notice: [Notice]
 
     score: Int!
     isMe: Boolean!
