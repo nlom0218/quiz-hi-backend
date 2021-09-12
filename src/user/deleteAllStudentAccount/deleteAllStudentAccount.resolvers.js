@@ -21,6 +21,20 @@ export default {
         }
       }
       const student = user.students.filter((item) => item.username.split("_")[0] === user.username)
+      const anotherStudent = user.students.filter((item) => item.username.split("_")[0] !== user.username)
+      // for (let i = 0; i < anotherStudent.length; i++) {
+      //   const quizScoreArr = JSON.parse(anotherStudent[i].quizScore).filter((item) => item.teacherId === user.id)
+      //   const exist = JSON.parse(anotherStudent[i].quizScore).filter((item) => item.teacherId !== user.id)
+      //   const newQuizScoreArr = [...exist, ...quizScoreArr.map((item) => {
+      //     return { ...item, order: 0 }
+      //   })]
+      //   await client.user.update({
+      //     where: { id: anotherStudent[i].id },
+      //     data: {
+      //       quizScore: JSON.stringify(newQuizScoreArr)
+      //     }
+      //   })
+      // }
       for (let i = 0; i < student.length; i++) {
         if (student[i].avatarURL) {
           await deleteToS3(student[i].avatarURL, "userProfile")
@@ -43,7 +57,7 @@ export default {
           teacherId: user.id
         }
       })
-      if (user.students.filter((item) => item.username.split("_")[0] !== user.username).length === 0) {
+      if (anotherStudent.length === 0) {
         await client.user.update({
           where: {
             username
