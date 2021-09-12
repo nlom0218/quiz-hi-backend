@@ -154,4 +154,6 @@ model Notice {
   type      String
   message   String
   info      String
+  sender    String
+  confirm   Boolean  @default(false)
 }

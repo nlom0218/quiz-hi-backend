@@ -10,5 +10,7 @@ export default gql`
     type: String!
     message: String!
     info: String!
+    sender: String!
+    confirm: Boolean!
   }
 `
