@@ -6,7 +6,10 @@ export default {
     me: protectedResolver((_, __, { loggedInUser }) => {
       return client.user.findUnique({
         where: { id: loggedInUser.id },
-        include: { tags: true }
+        include: {
+          tags: true,
+          notice: true
+        }
       })
     })
   }
