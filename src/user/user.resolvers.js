@@ -14,7 +14,9 @@ export default {
       } else if (type === "student") {
         const scoreArr = JSON.parse(quizScore).map((item) => parseInt(item.score))
         const totalScore = scoreArr.reduce((acc, cur) => acc + cur, 0)
-        return totalScore
+        return 0
+      } else {
+        return 0
       }
     },
     isFollow: async ({ id }, _, { loggedInUser }) => {

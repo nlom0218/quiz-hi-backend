@@ -26,7 +26,7 @@ export default {
             const existArr1 = quizScoreArr.filter((item) => item.teacherId === teacher.id).filter((item) => item.order !== homework.order)
             const existArr2 = quizScoreArr.filter((item) => item.teacherId !== teacher.id)
             const newHomeworkScore = { ...homeworkScore, ...{ score: homeworkScore.score + teacher.cooperationScore } }
-            const newQuizScore = JSON.stringify([...existArr1, existArr2, newHomeworkScore].sort(compare("num")))
+            const newQuizScore = JSON.stringify([...existArr1, ...existArr2, newHomeworkScore].sort(compare("num")))
             await client.user.update({
               where: { id: studentArr[i].id },
               data: {
