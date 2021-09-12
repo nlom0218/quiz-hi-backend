@@ -43,14 +43,16 @@ export default {
           teacherId: user.id
         }
       })
-      // await client.user.update({
-      //   where: {
-      //     username
-      //   },
-      //   data: {
-      //     quizScore: JSON.stringify([])
-      //   }
-      // })
+      if (user.students.filter((item) => item.username.split("_")[0] !== user.username).length === 0) {
+        await client.user.update({
+          where: {
+            username
+          },
+          data: {
+            quizScore: JSON.stringify([])
+          }
+        })
+      }
       return {
         ok: true
       }
