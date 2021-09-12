@@ -22,8 +22,8 @@ export default {
           const studentArr = homework.user
           for (let i = 0; i < studentArr.length; i++) {
             const quizScoreArr = JSON.parse(studentArr[i].quizScore)
-            const homeworkScore = quizScoreArr.filter((item) => item.order === homework.order)[0]
-            const existArr = quizScoreArr.filter((item) => item.order !== homework.order)
+            const homeworkScore = quizScoreArr.filter((item) => item.teacherId === teacher.id).filter((item) => item.order === homework.order)[0]
+            const existArr = quizScoreArr.filter((item) => item.teacherId === teacher.id).filter((item) => item.order !== homework.order)
             const newHomeworkScore = { ...homeworkScore, ...{ score: homeworkScore.score + teacher.cooperationScore } }
             const newQuizScore = JSON.stringify([...existArr, newHomeworkScore].sort(compare("order")))
             await client.user.update({
