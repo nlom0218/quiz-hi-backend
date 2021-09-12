@@ -6,7 +6,7 @@ import { deleteToS3 } from "../../shared/shared";
 export default {
   Mutation: {
     deleteAllStudentAccount: protectedResolver(async (_, { username, password }, { loggedInUser }) => {
-      const user = await client.user.findUnique({ where: { username } })
+      const user = await client.user.findUnique({ where: { username }, include: { students: true } })
       if (user.id !== loggedInUser.id) {
         return {
           ok: false,
@@ -20,15 +20,7 @@ export default {
           error: "비밀번호가 틀립니다."
         }
       }
-      const student = await client.user.findMany({
-        where: {
-          teacher: {
-            some: {
-              id: user.id
-            }
-          }
-        }
-      })
+      const student = user.students.filter((item) => item.username.split("_")[0] === user.username)
       for (let i = 0; i < student.length; i++) {
         if (student[i].avatarURL) {
           await deleteToS3(student[i].avatarURL, "userProfile")
@@ -40,29 +32,25 @@ export default {
             }
           }
         })
+        await client.user.delete({
+          where: {
+            id: student[i].id
+          }
+        })
       }
       await client.homework.deleteMany({
         where: {
           teacherId: user.id
         }
       })
-      await client.user.deleteMany({
-        where: {
-          teacher: {
-            some: {
-              id: user.id
-            }
-          }
-        }
-      })
-      await client.user.update({
-        where: {
-          username
-        },
-        data: {
-          quizScore: JSON.stringify([])
-        }
-      })
+      // await client.user.update({
+      //   where: {
+      //     username
+      //   },
+      //   data: {
+      //     quizScore: JSON.stringify([])
+      //   }
+      // })
       return {
         ok: true
       }

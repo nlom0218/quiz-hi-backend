@@ -6,7 +6,7 @@ export default {
   Mutation: {
     createStudentAccount: protectedResolver(async (_, { id, password, nickname, username }, { loggedInUser }) => {
       const teacher = await client.user.findUnique({ where: { id }, include: { students: true } })
-      const studentsOfTeacehr = teacher.students.filter((item) => item.username.split("_")[0] === teacher.username)
+      const studentsOfTeacher = teacher.students.filter((item) => item.username.split("_")[0] === teacher.username)
       if (!teacher) {
         return {
           ok: false,
@@ -24,10 +24,10 @@ export default {
       for (let i = 0; i < nicknameArr.length; i++) {
         await client.user.create({
           data: {
-            username: `${teacher.username}_s${i + studentsOfTeacehr.length + 1}`,
+            username: `${teacher.username}_s${i + studentsOfTeacher.length + 1}`,
             nickname: nicknameArr[i],
             type: "student",
-            password: await bcrypt.hash(`${password}^^${i + studentsOfTeacehr.length + 1}`, 10),
+            password: await bcrypt.hash(`${password}^^${i + studentsOfTeacher.length + 1}`, 10),
             teacher: {
               connect: { id: teacher.id }
             }
