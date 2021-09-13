@@ -11,6 +11,15 @@ export default {
           error: "권한이 없습니다."
         }
       }
+      const notice = await client.notice.findUnique({
+        where: { id: noticeId }
+      })
+      if (user.id !== notice.userId) {
+        return {
+          ok: false,
+          error: "권한이 없습니다."
+        }
+      }
       await client.notice.update({
         where: { id: noticeId },
         data: {
