@@ -10,7 +10,6 @@ export default {
         question: true,
         teacher: true,
         homework: true,
-        notice: true
       }
     })
   }

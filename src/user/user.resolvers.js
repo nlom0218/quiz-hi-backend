@@ -81,6 +81,12 @@ export default {
         teacher: { some: { id } }
       },
       orderBy: { createdAt: "asc" }
+    }),
+    notice: ({ id }) => client.notice.findMany({
+      where: {
+        user: { id }
+      },
+      orderBy: { createdAt: "desc" }
     })
   }
 }
