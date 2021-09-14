@@ -23,16 +23,20 @@ export default {
           for (let i = 0; i < studentArr.length; i++) {
             const quizScoreArr = JSON.parse(studentArr[i].quizScore)
             const homeworkScore = quizScoreArr.filter((item) => item.teacherId === teacher.id).filter((item) => item.order === homework.order)[0]
-            const existArr1 = quizScoreArr.filter((item) => item.teacherId === teacher.id).filter((item) => item.order !== homework.order)
-            const existArr2 = quizScoreArr.filter((item) => item.teacherId !== teacher.id)
-            const newHomeworkScore = { ...homeworkScore, ...{ score: homeworkScore.score + teacher.cooperationScore } }
-            const newQuizScore = JSON.stringify([...existArr1, ...existArr2, newHomeworkScore].sort(compare("num")))
-            await client.user.update({
-              where: { id: studentArr[i].id },
-              data: {
-                quizScore: newQuizScore
-              }
-            })
+            if (!homeworkScore) {
+              return
+            } else {
+              const existArr1 = quizScoreArr.filter((item) => item.teacherId === teacher.id).filter((item) => item.order !== homework.order)
+              const existArr2 = quizScoreArr.filter((item) => item.teacherId !== teacher.id)
+              const newHomeworkScore = { ...homeworkScore, ...{ score: homeworkScore.score + teacher.cooperationScore } }
+              const newQuizScore = JSON.stringify([...existArr1, ...existArr2, newHomeworkScore].sort(compare("num")))
+              await client.user.update({
+                where: { id: studentArr[i].id },
+                data: {
+                  quizScore: newQuizScore
+                }
+              })
+            }
           }
         }
       }
