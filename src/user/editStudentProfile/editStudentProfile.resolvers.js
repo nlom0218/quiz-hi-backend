@@ -4,7 +4,7 @@ import bcrypt from "bcrypt"
 
 export default {
   Mutation: {
-    editStudentProfile: protectedResolver(async (_, { teacherId, studentId, nickname, password }, { loggedInUser }) => {
+    editStudentProfile: protectedResolver(async (_, { teacherId, studentId, nickname, password, score }, { loggedInUser }) => {
       const teacher = await client.user.findUnique({ where: { id: teacherId } })
       const student = await client.user.findUnique({
         where: { id: studentId },
@@ -48,15 +48,30 @@ export default {
         uglyPassword = await bcrypt.hash(password, 10)
       }
 
+      let newStudentQuizScore = []
+      if (score) {
+        const studentQuizScore = JSON.parse(student.quizScore)
+        const basicScore = studentQuizScore.filter((item) => item.num === 0)[0]
+        const existScore = studentQuizScore.filter((item) => item.num !== 0)
+        if (!basicScore) {
+          const newBasicScore = { num: 0, score }
+          newStudentQuizScore = [newBasicScore, ...existScore]
+        } else {
+          const newBasicScore = { num: 0, score: basicScore.score + score }
+          newStudentQuizScore = [newBasicScore, ...existScore]
+        }
+      }
+
       await client.user.update({
         where: { id: studentId },
         data: {
           ...(nickname && { nickname }),
-          ...(password && { password: uglyPassword })
+          ...(password && { password: uglyPassword }),
+          ...(score && { quizScore: JSON.stringify(newStudentQuizScore) })
         }
       })
       return {
-        ok: true
+        ok: true,
       }
     })
   }
