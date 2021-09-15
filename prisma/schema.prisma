@@ -127,7 +127,7 @@ model Homework {
   quizId      Int
   targetScore Int?
   score       String
-  order       Int?
+  order       Int      @default(1)
   mode        String
   teacherId   Int
   finish      Boolean  @default(false)
