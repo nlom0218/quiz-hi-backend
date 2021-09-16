@@ -16,6 +16,10 @@ export default {
       const processMessage = () => {
         if (type === "sharedStudent") {
           return `${sendUser.nickname}선생님께서 학생 목록을 보냈습니다. 수락하시겠습니까?`
+        } else if (type === "editNotice") {
+          return `${sendUser.nickname}선생님께서 메세지를 보냈습니다.`
+        } else if (type === "chargeInfo") {
+          return "신고가 접수 되었습니다."
         }
       }
       await client.notice.create({
