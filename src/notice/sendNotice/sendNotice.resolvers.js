@@ -19,7 +19,7 @@ export default {
         } else if (type === "editNotice") {
           return `${sendUser.nickname}선생님께서 메세지를 보냈습니다.`
         } else if (type === "chargeNotice") {
-          return "신고가 접수 되었습니다."
+          return "부적절한 게시물로 신고가 접수 되었습니다."
         }
       }
       await client.notice.create({
