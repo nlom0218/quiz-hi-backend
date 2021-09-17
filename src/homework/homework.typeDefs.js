@@ -26,5 +26,6 @@ export default gql`
     result: String!
     score: Int!
     title: String!
+    homeworkId: Int
   }
 `

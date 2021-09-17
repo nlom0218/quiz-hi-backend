@@ -4,7 +4,7 @@ import { protectedResolver } from "../../user/users.utils";
 
 export default {
   Mutation: {
-    createHomeworkResult: protectedResolver(async (_, { quizId, result, order, score, quizTitle, teacherId }, { loggedInUser }) => {
+    createHomeworkResult: protectedResolver(async (_, { quizId, result, order, score, quizTitle, teacherId, homeworkId }, { loggedInUser }) => {
       const student = await client.user.findUnique({ where: { id: loggedInUser.id } })
       const quiz = await client.quiz.findUnique({ where: { id: quizId } })
       const studentQuizScoreArr = JSON.parse(student.quizScore)
@@ -24,7 +24,8 @@ export default {
           result,
           score,
           title: quizTitle,
-          quizId
+          quizId,
+          homeworkId
         }
       })
       return {
