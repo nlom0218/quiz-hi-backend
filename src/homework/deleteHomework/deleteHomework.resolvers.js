@@ -5,7 +5,10 @@ export default {
   Mutation: {
     deleteHomework: protectedResolver(async (_, { homeworkId }, { loggedInUser }) => {
       const teacher = await client.user.findUnique({ where: { id: loggedInUser.id } })
-      const homework = await client.homework.findUnique({ where: { id: homeworkId } })
+      const homework = await client.homework.findUnique({
+        where: { id: homeworkId },
+        include: { user: true }
+      })
       if (teacher.id !== homework.teacherId) {
         return {
           ok: false,
