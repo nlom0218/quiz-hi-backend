@@ -15,6 +15,11 @@ export default {
           error: "숙제 삭제 권한이 없습니다."
         }
       }
+      await client.homeworkResult.deleteMany({
+        where: {
+          homeworkId
+        }
+      })
 
       await client.homework.delete({
         where: {
