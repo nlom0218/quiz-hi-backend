@@ -17,7 +17,7 @@ export default {
         if (type === "sharedStudent") {
           return `${sendUser.nickname}선생님께서 학생 목록을 보냈습니다. 수락하시겠습니까?`
         } else if (type === "editNotice") {
-          return `${sendUser.nickname}선생님께서 메세지를 보냈습니다.`
+          return `${sendUser.nickname}선생님께서 메시지를 보냈습니다.`
         } else if (type === "chargeNotice") {
           return "부적절한 게시물로 신고가 접수 되었습니다."
         }
