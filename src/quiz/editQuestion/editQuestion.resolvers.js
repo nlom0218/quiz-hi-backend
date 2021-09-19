@@ -75,7 +75,8 @@ export default {
         }
       })
       return {
-        ok: true
+        ok: true,
+        ...(image && { error: imageURL }),
       }
     })
   }
