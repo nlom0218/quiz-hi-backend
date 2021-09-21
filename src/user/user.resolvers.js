@@ -41,7 +41,8 @@ export default {
         console.log(publicQuiz, publicQuestion);
         console.log(quizLikeNum, questionLikeNum);
         console.log(totalFollow, totalFollowing);
-        return 10
+        const totalScore = (publicQuiz * 3) + publicQuestion + quizLikeNum + questionLikeNum + (totalFollow * 3) + (totalFollowing * 3)
+        return totalScore
       } else if (type === "student") {
         const scoreArr = JSON.parse(quizScore).map((item) => parseInt(item.score))
         const totalScore = scoreArr.reduce((acc, cur) => acc + cur, 0)
