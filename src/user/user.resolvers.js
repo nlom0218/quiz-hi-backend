@@ -8,9 +8,22 @@ export default {
       }
       return id === loggedInUser.id
     },
-    score: async ({ type, quizScore }) => {
+    score: async ({ type, quizScore, id }) => {
       if (type === "teacher") {
-        return 20000
+        const publicQuiz = await client.quiz.count({
+          where: {
+            userId: id,
+            state: "public"
+          }
+        })
+        const publicQuestion = await client.question.count({
+          where: {
+            userId: id,
+            state: "public"
+          }
+        })
+        console.log(publicQuiz, publicQuestion);
+        return 10
       } else if (type === "student") {
         const scoreArr = JSON.parse(quizScore).map((item) => parseInt(item.score))
         const totalScore = scoreArr.reduce((acc, cur) => acc + cur, 0)
