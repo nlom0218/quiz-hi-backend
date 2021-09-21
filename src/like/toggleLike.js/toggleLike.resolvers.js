@@ -31,7 +31,8 @@ export default {
             await client.quizLike.create({
               data: {
                 user: { connect: { id: loggedInUser.id } },
-                quiz: { connect: { id } }
+                quiz: { connect: { id } },
+                quizOnwerId: quiz.userId
               }
             })
             await client.quiz.update({
@@ -68,7 +69,8 @@ export default {
             await client.questionLike.create({
               data: {
                 user: { connect: { id: loggedInUser.id } },
-                question: { connect: { id } }
+                question: { connect: { id } },
+                questionOnwerId: question.userId
               }
             })
             await client.question.update({
