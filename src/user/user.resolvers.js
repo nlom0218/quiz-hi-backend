@@ -12,17 +12,35 @@ export default {
       if (type === "teacher") {
         const publicQuiz = await client.quiz.count({
           where: {
-            userId: id,
-            state: "public"
+            AND: [
+              { userId: id },
+              { state: "public" }
+            ]
           }
         })
         const publicQuestion = await client.question.count({
           where: {
-            userId: id,
-            state: "public"
+            AND: [
+              { userId: id },
+              { state: "public" }
+            ]
           }
         })
+        const quizLikeNum = await client.quizLike.count({
+          where: {
+            quizOnwerId: id
+          }
+        })
+        const questionLikeNum = await client.questionLike.count({
+          where: {
+            questionOnwerId: id
+          }
+        })
+        const totalFollow = await client.user.count({ where: { following: { some: { id } } } })
+        const totalFollowing = await client.user.count({ where: { followers: { some: { id } } } })
         console.log(publicQuiz, publicQuestion);
+        console.log(quizLikeNum, questionLikeNum);
+        console.log(totalFollow, totalFollowing);
         return 10
       } else if (type === "student") {
         const scoreArr = JSON.parse(quizScore).map((item) => parseInt(item.score))
