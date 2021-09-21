@@ -95,25 +95,27 @@ model Tag {
 }
 
 model QuizLike {
-  id        Int      @id @default(autoincrement())
-  quiz      Quiz     @relation(fields: [quizId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  quizId    Int
-  userId    Int
+  id          Int      @id @default(autoincrement())
+  quiz        Quiz     @relation(fields: [quizId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  quizId      Int
+  userId      Int
+  quizOnwerId Int?
 
   @@unique([quizId, userId])
 }
 
 model QuestionLike {
-  id         Int      @id @default(autoincrement())
-  question   Question @relation(fields: [questionId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  questionId Int
-  userId     Int
+  id              Int      @id @default(autoincrement())
+  question        Question @relation(fields: [questionId], references: [id])
+  user            User     @relation(fields: [userId], references: [id])
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  questionId      Int
+  userId          Int
+  questionOnwerId Int?
 
   @@unique([questionId, userId])
 }
