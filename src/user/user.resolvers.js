@@ -38,9 +38,6 @@ export default {
         })
         const totalFollow = await client.user.count({ where: { following: { some: { id } } } })
         const totalFollowing = await client.user.count({ where: { followers: { some: { id } } } })
-        console.log(publicQuiz, publicQuestion);
-        console.log(quizLikeNum, questionLikeNum);
-        console.log(totalFollow, totalFollowing);
         const totalScore = (publicQuiz * 3) + publicQuestion + quizLikeNum + questionLikeNum + (totalFollow * 3) + (totalFollowing * 3)
         return totalScore
       } else if (type === "student") {
