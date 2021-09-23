@@ -14,6 +14,7 @@ export default {
         },
         take: 10,
         skip: page * 10 - 10,
+        orderBy: { nickname: "asc" }
       })
     })
   }
