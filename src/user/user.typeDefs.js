@@ -27,6 +27,8 @@ export default gql`
     homework: [Homework]
     homeworkResult: [HomeworkResult]
     notice: [Notice]
+    followers: [User]
+    following: [User]
 
     score: Int!
     isMe: Boolean!

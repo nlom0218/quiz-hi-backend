@@ -14,4 +14,8 @@ export default gql`
     question: [Question]
     totalNum: Int!
   }
+  type seeUserResult {
+    user: [User]
+    totalNum: Int!
+  }
 `
