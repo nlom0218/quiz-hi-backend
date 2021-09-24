@@ -15,11 +15,9 @@ export default {
           },
           take: 10,
           skip: page * 10 - 10,
-          orderBy: {
-            ...(sort === "recent" && { createdAt: "desc" }),
-            ...(sort === "hits" && { hits: "desc" }),
-            ...(sort === "likes" && { likes: "desc" })
-          }
+          ...(sort === "recent" && { orderBy: { createdAt: "desc" } }),
+          ...(sort === "hits" && { orderBy: [{ hits: "desc" }, { createdAt: "desc" }] }),
+          ...(sort === "likes" && { orderBy: [{ likes: "desc" }, { createdAt: "desc" }] })
         })
         const totalNum = await client.quiz.count({
           where: {
