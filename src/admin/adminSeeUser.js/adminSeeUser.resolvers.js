@@ -4,8 +4,8 @@ export default {
   Query: {
     adminSeeUser: async (_, { type, page }) => {
       const user = await client.user.findMany({
-        take: 10,
-        skip: page * 10 - 10,
+        take: 20,
+        skip: page * 20 - 20,
         ...(type !== "all" && { where: { type } }),
         orderBy: { createdAt: "desc" }
       })
