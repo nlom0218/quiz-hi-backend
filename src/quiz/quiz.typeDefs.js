@@ -19,6 +19,7 @@ export default gql`
     followUser: [User]
     homework: [Homework]
     homeworkResult: [HomeworkResult]
+    QuizComplain: [QuizComplain]
 
     questionNum: Int!
     isLiked: Boolean!
@@ -43,6 +44,7 @@ export default gql`
     questionLike: [QuestionLike]
     likes: Int!
     followUser: [User]
+    QuestionComplain: [QuestionComplain]
 
     isLiked: Boolean!
   }

@@ -35,6 +35,36 @@ export default {
           message: processMessage()
         }
       })
+      if (type === "chargeNotice") {
+        const id = JSON.parse(info)[0].id
+        const message = JSON.parse(info)[1].chargeInfo
+        const type = JSON.parse(info)[2].type
+        const receiver = JSON.stringify({ id: receiveUser.id, username: receiveUser.username })
+        const sender = JSON.stringify({ id: sendUser.id, username: sendUser.username })
+        if (type === "quiz") {
+          await client.quizComplain.create({
+            data: {
+              quiz: {
+                connect: { id }
+              },
+              message,
+              sender,
+              receiver
+            }
+          })
+        } else if (type === "question") {
+          await client.questionComplain.create({
+            data: {
+              question: {
+                connect: { id }
+              },
+              message,
+              sender,
+              receiver
+            }
+          })
+        }
+      }
       return {
         ok: true
       }

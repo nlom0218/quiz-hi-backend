@@ -13,4 +13,24 @@ export default gql`
     sender: String!
     confirm: Boolean!
   }
+
+  type QuizComplain {
+    id: Int!   
+    createdAt: String!
+    updatedAt: String!
+    quiz: Quiz!
+    message: String!
+    sender: String!
+    receiver: String!
+  }
+  
+  type QuestionComplain {
+    id: Int!   
+    createdAt: String!
+    updatedAt: String!
+    questions: Question!
+    message: String!
+    sender: String!
+    receiver: String!
+  }
 `
