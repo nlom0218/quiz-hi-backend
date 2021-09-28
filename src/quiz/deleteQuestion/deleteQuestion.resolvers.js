@@ -24,6 +24,13 @@ export default {
             }
           }
         })
+        await client.questionComplain.deleteMany({
+          where: {
+            question: {
+              id
+            }
+          }
+        })
         await client.question.delete({
           where: { id }
         })

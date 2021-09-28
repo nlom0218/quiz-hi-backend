@@ -20,6 +20,13 @@ export default {
             }
           }
         })
+        await client.quizComplain.deleteMany({
+          where: {
+            quiz: {
+              id
+            }
+          }
+        })
         await client.quiz.delete({
           where: { id }
         })
