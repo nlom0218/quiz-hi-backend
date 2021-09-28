@@ -18,4 +18,9 @@ export default gql`
     user: [User]
     totalNum: Int!
   }
+  type seeComplainResult {
+    quizComplain: [QuizComplain]
+    questionComplain: [QuestionComplain]
+    totalNum: Int!
+  }
 `

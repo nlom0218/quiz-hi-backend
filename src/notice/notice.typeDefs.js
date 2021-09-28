@@ -28,7 +28,7 @@ export default gql`
     id: Int!   
     createdAt: String!
     updatedAt: String!
-    questions: Question!
+    question: Question!
     message: String!
     sender: String!
     receiver: String!
