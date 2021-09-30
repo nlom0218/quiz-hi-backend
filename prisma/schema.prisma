@@ -64,6 +64,7 @@ model Question {
   likes            Int                @default(0)
   followUser       User[]             @relation("QuestionFollowRelation")
   QuestionComplain QuestionComplain[]
+  complain         Boolean?           @default(false)
 }
 
 model Quiz {
@@ -84,6 +85,7 @@ model Quiz {
   likes        Int            @default(0)
   followUser   User[]         @relation("QuizFollowRelation")
   QuizComplain QuizComplain[]
+  complain     Boolean?       @default(false)
 }
 
 model Tag {
