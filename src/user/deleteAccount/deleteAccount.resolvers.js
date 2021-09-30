@@ -51,6 +51,23 @@ export default {
           userId: user.id
         }
       })
+      await client.quizComplain.deleteMany({
+        where: {
+          receiver: JSON.stringify({ id: user.id, username: user.username })
+        }
+      })
+      await client.questionComplain.deleteMany({
+        where: {
+          receiver: JSON.stringify({ id: user.id, username: user.username })
+        }
+      })
+      await client.notice.deleteMany({
+        where: {
+          user: {
+            id: user.id
+          }
+        }
+      })
       await client.quiz.deleteMany({
         where: {
           userId: user.id
