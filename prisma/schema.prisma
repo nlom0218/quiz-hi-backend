@@ -64,7 +64,8 @@ model Question {
   likes            Int                @default(0)
   followUser       User[]             @relation("QuestionFollowRelation")
   QuestionComplain QuestionComplain[]
-  complain         String?
+  complain         Boolean?           @default(false)
+  deleteDay        String?
 }
 
 model Quiz {
@@ -85,7 +86,8 @@ model Quiz {
   likes        Int            @default(0)
   followUser   User[]         @relation("QuizFollowRelation")
   QuizComplain QuizComplain[]
-  complain     String?
+  complain     Boolean?       @default(false)
+  deleteDay    String?
 }
 
 model Tag {
