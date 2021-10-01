@@ -14,7 +14,6 @@ export default {
         await client.quiz.update({
           where: { id: contentId },
           data: {
-            complain: true,
             deleteDay
           }
         })
@@ -29,7 +28,6 @@ export default {
         await client.question.update({
           where: { id: contentId },
           data: {
-            complain: true,
             deleteDay
           }
         })

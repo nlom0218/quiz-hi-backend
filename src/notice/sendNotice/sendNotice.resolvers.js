@@ -52,6 +52,15 @@ export default {
               receiver
             }
           })
+          const complainNum = await client.quizComplain.count({ where: { quizId: id } })
+          if (complainNum > 9) {
+            await client.quiz.update({
+              where: { id },
+              data: {
+                complain: true
+              }
+            })
+          }
         } else if (type === "question") {
           await client.questionComplain.create({
             data: {
@@ -63,6 +72,15 @@ export default {
               receiver
             }
           })
+          const complainNum = await client.questionComplain.count({ where: { questionId: id } })
+          if (complainNum > 9) {
+            await client.question.update({
+              where: { id },
+              data: {
+                complain: true
+              }
+            })
+          }
         }
       }
       return {
