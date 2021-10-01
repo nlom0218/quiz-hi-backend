@@ -20,6 +20,8 @@ export default gql`
     homework: [Homework]
     homeworkResult: [HomeworkResult]
     QuizComplain: [QuizComplain]
+    complain: Boolean
+    deleteDay: String
 
     questionNum: Int!
     isLiked: Boolean!
@@ -45,6 +47,8 @@ export default gql`
     likes: Int!
     followUser: [User]
     QuestionComplain: [QuestionComplain]
+    complain: Boolean
+    deleteDay: String
 
     isLiked: Boolean!
   }
