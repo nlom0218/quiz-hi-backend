@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Question" ALTER COLUMN "complain" DROP DEFAULT,
+ALTER COLUMN "complain" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "Quiz" ALTER COLUMN "complain" DROP DEFAULT,
+ALTER COLUMN "complain" SET DATA TYPE TEXT;
