@@ -2,6 +2,6 @@ import { gql } from "apollo-server-core";
 
 export default gql`
   type Query {
-    adminSeeQuizComplain(page: Int!): seeComplainResult
+    adminSeeQuizComplain(page: Int!): seeFeedResult
   }
 `

@@ -3,15 +3,24 @@ import client from "../../client"
 export default {
   Query: {
     adminSeeQuestionComplain: async (_, { page }) => {
-      const questionComplain = await client.questionComplain.findMany({
+      const question = await client.question.findMany({
         take: 20,
         skip: page * 20 - 20,
-        orderBy: { questionId: "asc" },
-        include: { question: true }
+        include: {
+          QuestionComplain: true,
+          user: true
+        },
+        where: {
+          complain: true
+        }
       })
-      const totalNum = await client.questionComplain.count()
+      const totalNum = await client.question.count({
+        where: {
+          complain: true
+        }
+      })
       return {
-        questionComplain,
+        question,
         totalNum
       }
     }
