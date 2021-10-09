@@ -188,3 +188,12 @@ model QuestionComplain {
   sender     String
   receiver   String
 }
+
+model Suggestions {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  suggestion String
+  sender     String
+  senderId   Int
+}
