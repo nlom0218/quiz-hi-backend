@@ -35,7 +35,7 @@ export default gql`
   }
 
   type Suggestions {
-    id Int!
+    id: Int!
     createdAt: String!
     updatedAt: String!
     suggestion: String!
