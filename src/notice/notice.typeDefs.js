@@ -33,4 +33,13 @@ export default gql`
     sender: String!
     receiver: String!
   }
+
+  type Suggestions {
+    id Int!
+    createdAt: String!
+    updatedAt: String!
+    suggestion: String!
+    sender: String!
+    # sender는 유저의 아이디, 즉 username으로 한다.
+  }
 `
