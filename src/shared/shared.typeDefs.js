@@ -23,4 +23,8 @@ export default gql`
     questionComplain: [QuestionComplain]
     totalNum: Int!
   }
+  type seeSuggestionResult {
+    suggestions: [Suggestions]
+    totalNum: Int!
+  }
 `
