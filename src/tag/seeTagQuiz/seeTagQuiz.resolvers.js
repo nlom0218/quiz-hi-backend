@@ -5,7 +5,8 @@ export default {
     seeTagQuiz: async (_, { type, id, page }) => {
       return await client.quiz.findMany({
         where: {
-          tags: { some: { id } }
+          tags: { some: { id } },
+          state: "public"
         },
         include: {
           user: true,

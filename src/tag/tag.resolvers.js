@@ -13,14 +13,16 @@ export default {
       where: {
         tags: {
           some: { id }
-        }
+        },
+        state: "public"
       }
     }),
     totalQuizzes: async ({ id }) => await client.quiz.count({
       where: {
         tags: {
-          some: { id }
-        }
+          some: { id },
+        },
+        state: "public"
       }
     }),
     isFollow: async ({ id }, _, { loggedInUser }) => {
